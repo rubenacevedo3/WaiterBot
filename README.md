@@ -1,4 +1,6 @@
-## WaiterBot
+# WaiterBot
+[![Build Status](https://travis-ci.org/rubenacevedo3/cpp-boilerplate.svg?branch=master)](https://travis-ci.org/rubenacevedo3/WaiterBot.svg?branch=master)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Product Description
 
