@@ -53,6 +53,16 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 * bla
 * bla
 
+## Demo Default Values
+
+* Travel velocity = 1 m/s
+* Food Weight =  25 N
+* Loaction 1 (Food/Drink Pick-Up Location) = (0,0) meters
+* Location 2 = (0,10) meters
+* Location 3 = (10,10) meters
+* Location 4 = (10,0) meters
+* Collision Distance = 0.1 meters
+
 ## Steps to Build Demo
 
 First, create and build a catkin workspace if you do not have one already
