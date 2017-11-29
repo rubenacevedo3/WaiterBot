@@ -34,6 +34,115 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 © 2017 GitHub, Inc.
 
+## Dependencies
+
+* Ubuntu 
+* ROS Kinetic
+* c++11/14
+* Catkin
+* Gazebo
+* Turtlebot Simulation stack
+* roscpp package
+* std_msgs package
+* message_generation package
+* sensor_msgs package
+
+## Known Issues/Bugs
+
+* bla
+* bla
+* bla
+
+## Steps to Build Demo
+
+First, create and build a catkin workspace if you do not have one already
+
+```
+$ mkdir -p ~/catkin_ws/src
+$ cd ~/catkin_ws/
+$ catkin_make
+```
+
+To add your catkin workspace into the ROS enviroment you need to source the generated setup file.
+
+```
+$ . ~/catkin_ws/devel/setup.bash
+```
+
+To download this repository to your catkin workpace do the following steps:
+
+```
+$ cd ~/catkin_ws/src
+$ git clone --recursive https://github.com/rubenacevedo3/WaiterBot.git
+$ git pull origin master
+```
+
+To build any catkin projects found in the src folder use: 
+```
+# In a catkin workspace
+$ catkin_make
+```
+
+To build any test found in the test folder use: 
+```
+# In a catkin workspace
+$ catkin_make test
+```
+
+## Steps to Run Demo
+
+To install Turtlebot simulation stack type:
+```
+$ sudo apt-get install ros-kinetic-turtlebot-gazebo ros-kinetic-turtlebot-apps ros-kinetic-turtlebot-rviz-launchers
+```
+
+To run the launch file:
+
+(In terminal 1)
+```
+$ roscore
+```
+
+(In terminal 2)
+```
+$ cd ~/catkin_ws
+$ source ./devel/setup.bash
+$ roslaunch WaiterBot waiterBotDemo.launch
+# press ctrl+C to stop
+```
+
+## Steps to Run Tests
+(In terminal 2)
+```
+$ cd ~/catkin_ws
+$ source ./devel/setup.bash
+$ rostest beginner_tutorials talkerTest.launch
+```
+
+## Steps to Run cpplint 
+
+Use cpplint to identify potential source code issues that are in conflict with the Google C++ style guide. 
+
+To install and run from terminal:
+
+```
+$ sudo apt-get install python-pip
+$ sudo pip install cpplint
+$ cd ~/catkin_ws/src/RoombaTurtleBot/roomba_turtle_bot
+$ cpplint $( find . -name \*.hpp -or -name \*.cpp | grep -vE -e "^./build/" -e "^./vendor/" -e "^./docs/" -e "^./results" )
+```
+
+## Steps to Run cppcheck 
+
+Use cppcheck for static code analysis.
+
+To run from terminal:
+
+```
+$ cd ~/catkin_ws/src/RoombaTurtleBot/roomba_turtle_bot
+$ cppcheck --enable=all --std=c++11 -I include/ --suppress=missingIncludeSystem $( find . -name *.cpp | grep -vE -e "^./build/" -e "^./vendor/" )
+```
+
 ## About Me
 
 I am a 2nd year PhD student in the University of Maryland, College Park (UMD) Mechanical Engineering Department focusing on soft robotics. My PI is Dr. Hugh Bruck in the Advance Manufacturing Laboratory and I also collaborate with Dr. Ryan Sochol in the Bioinspired Advance Manufacturing Laboratory and Dr. S.K Gupta at the University of Southern California (USC). 
