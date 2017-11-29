@@ -63,6 +63,19 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 * Location 4 = (10,0) meters
 * Collision Distance = 0.1 meters
 
+## ROS Messages, Services, and Actions
+
+Messages:
+* sensor_msgs::LaserScan subscribing to the topic "/scan"
+* std_msgs::float32 subscribing and publishing to the topic "force"
+* geometry_msgs::Twist publishing to the topic "/mobile_base/commands/velocity"
+
+Services:
+(none)
+
+Actions:
+* moveToPos.action 
+
 ## Steps to Build Demo
 
 First, create and build a catkin workspace if you do not have one already
