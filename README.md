@@ -152,7 +152,7 @@ To install and run from terminal:
 ```
 $ sudo apt-get install python-pip
 $ sudo pip install cpplint
-$ cd ~/catkin_ws/src/RoombaTurtleBot/roomba_turtle_bot
+$ cd ~/catkin_ws/src/src/WaiterBot/waiter_bot
 $ cpplint $( find . -name \*.hpp -or -name \*.cpp | grep -vE -e "^./build/" -e "^./vendor/" -e "^./docs/" -e "^./results" )
 ```
 
@@ -163,7 +163,7 @@ Use cppcheck for static code analysis.
 To run from terminal:
 
 ```
-$ cd ~/catkin_ws/src/RoombaTurtleBot/roomba_turtle_bot
+$ cd ~/catkin_ws/src/WaiterBot/waiter_bot
 $ cppcheck --enable=all --std=c++11 -I include/ --suppress=missingIncludeSystem $( find . -name *.cpp | grep -vE -e "^./build/" -e "^./vendor/" )
 ```
 

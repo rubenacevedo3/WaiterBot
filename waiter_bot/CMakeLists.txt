@@ -11,6 +11,8 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
+  sensor_msgs
+  message_generation
 )
 
 ################################################
@@ -59,10 +61,10 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   std_msgs
-# )
+generate_messages(
+  DEPENDENCIES
+  std_msgs
+)
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -188,4 +190,26 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+
+add_executable(waiterBot_node src/waiterBot_node.cpp)
+target_link_libraries(waiterBot_node ${catkin_LIBRARIES})
+add_dependencies(waiterBot_node waiterBot_node_generate_messages_cpp)
+
+add_executable(food src/food.cpp)
+target_link_libraries(food ${catkin_LIBRARIES})
+add_dependencies(food waiterBot_node_generate_messages_cpp)
+
+#if(CATKIN_ENABLE_TESTING)
+  #find_package(rostest REQUIRED)
+
+  #add_rostest_gtest(
+  #talkerTest
+  #test/talkerTest.launch
+  #test/talkerTest.cpp
+  #)
+  #target_link_libraries(
+  #talkerTest
+  #${catkin_LIBRARIES}
+  #)
+#endif()
 
