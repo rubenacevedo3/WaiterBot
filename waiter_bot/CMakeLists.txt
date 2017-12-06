@@ -61,10 +61,10 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate added messages and services with any dependencies listed here
-generate_messages(
-  DEPENDENCIES
-  std_msgs
-)
+#generate_messages(
+ # DEPENDENCIES
+  #std_msgs
+#)
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -100,6 +100,7 @@ catkin_package(
 #  LIBRARIES waiter_bot
 #  CATKIN_DEPENDS roscpp rospy std_msgs
 #  DEPENDS system_lib
+#CATKIN_DEPENDS message_runtime
 )
 
 ###########
@@ -193,23 +194,31 @@ include_directories(
 
 add_executable(waiterBot_node src/waiterBot_node.cpp)
 target_link_libraries(waiterBot_node ${catkin_LIBRARIES})
-add_dependencies(waiterBot_node waiterBot_node_generate_messages_cpp)
+add_dependencies(waiterBot_node waiter_bot_generate_messages_cpp)
 
-add_executable(food src/food.cpp)
-target_link_libraries(food ${catkin_LIBRARIES})
-add_dependencies(food waiterBot_node_generate_messages_cpp)
+#add_executable(food src/food.cpp)
+#target_link_libraries(food ${catkin_LIBRARIES})
+#add_dependencies(food waiter_bot_generate_messages_cpp)
 
-#if(CATKIN_ENABLE_TESTING)
-  #find_package(rostest REQUIRED)
+if(CATKIN_ENABLE_TESTING)
+  find_package(rostest REQUIRED)
+  #include_directories( ${PROJECT_NAME}/include ${catkin_INCLUDE_DIRS})
 
-  #add_rostest_gtest(
-  #talkerTest
-  #test/talkerTest.launch
-  #test/talkerTest.cpp
+  add_rostest_gtest(
+  foodTest
+  test/foodTest.cpp
+  test/foodTest.launch
+  src/food.cpp
+  )
+  target_link_libraries(
+  foodTest
+  ${catkin_LIBRARIES} 
+  )
+  #add_dependencies(
+   #foodTest
+   #${PROJECT_NAME}
+   #${${PROJECT_NAME}_EXPORTED_TARGETS}
+   #${catkin_EXPORTED_TARGETS}
   #)
-  #target_link_libraries(
-  #talkerTest
-  #${catkin_LIBRARIES}
-  #)
-#endif()
+endif()
 

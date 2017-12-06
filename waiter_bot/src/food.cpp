@@ -79,11 +79,12 @@ void food::addFood() {
  * @return nothing
  */
 void food::removeFood() {
-  if (foodWeight - (1/5)*maxFoodWeight < 0) {
+  if (foodWeight - 0.2*maxFoodWeight < 0) {
     foodWeight = 0;
     return;
   }
-  foodWeight = foodWeight - (1/5)*maxFoodWeight;
+  foodWeight = foodWeight - 0.2*maxFoodWeight;
+  //foodWeight = 0.2*maxFoodWeight;
 }
 
 
@@ -91,24 +92,24 @@ void food::removeFood() {
  * @brief This node publishes the food weight
  */
 int main(int argc, char **argv) {
-  ros::init(argc, argv, "food");
-  ros::NodeHandle n;
+  //ros::init(argc, argv, "food");
+  //ros::NodeHandle n;
 
   /**
    * create a Float32 message publisher that publishes
    * the food weight to the topic "force"
    */
-  ros::Publisher pub = n.advertise<std_msgs::Float32>("force", 1000);
-  ros::Rate loop_rate(10);
-  food f;
-  while (ros::ok()) {
-    std_msgs::Float32 msg;
-    msg.data = f.getFoodWeight();
-    pub.publish(msg);
-    ROS_INFO("Food Weight published: %f", msg.data);
-    ros::spinOnce();
-    loop_rate.sleep();
-  }
+  //ros::Publisher pub = n.advertise<std_msgs::Float32>("force", 1000);
+  //ros::Rate loop_rate(10);
+  //food f;
+  //while (ros::ok()) {
+    //std_msgs::Float32 msg;
+    //msg.data = f.getFoodWeight();
+    //pub.publish(msg);
+    //ROS_INFO("Food Weight published: %f", msg.data);
+    //ros::spinOnce();
+    //loop_rate.sleep();
+  //}
   return 0;
 }
 

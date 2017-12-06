@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<launch>
+  <node pkg="waiter_bot" name="foodTest" type="foodTest"/>
+  <test pkg="waiter_bot" test-name="foodTest" type="foodTest" />
+</launch>
