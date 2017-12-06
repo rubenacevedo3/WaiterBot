@@ -91,7 +91,7 @@ void food::removeFood() {
 /**
  * @brief This node publishes the food weight
  */
-int main(int argc, char **argv) {
+//int main(int argc, char **argv) {
   //ros::init(argc, argv, "food");
   //ros::NodeHandle n;
 
@@ -110,7 +110,7 @@ int main(int argc, char **argv) {
     //ros::spinOnce();
     //loop_rate.sleep();
   //}
-  return 0;
-}
+  //return 0;
+//}
 
 

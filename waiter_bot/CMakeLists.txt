@@ -100,7 +100,7 @@ catkin_package(
 #  LIBRARIES waiter_bot
 #  CATKIN_DEPENDS roscpp rospy std_msgs
 #  DEPENDS system_lib
-#CATKIN_DEPENDS message_runtime
+CATKIN_DEPENDS message_runtime
 )
 
 ###########
@@ -194,10 +194,10 @@ include_directories(
 
 add_executable(waiterBot_node src/waiterBot_node.cpp)
 target_link_libraries(waiterBot_node ${catkin_LIBRARIES})
-add_dependencies(waiterBot_node waiter_bot_generate_messages_cpp)
+#add_dependencies(waiterBot_node waiter_bot_generate_messages_cpp)
 
-#add_executable(food src/food.cpp)
-#target_link_libraries(food ${catkin_LIBRARIES})
+add_executable(food src/food.cpp)
+target_link_libraries(food ${catkin_LIBRARIES})
 #add_dependencies(food waiter_bot_generate_messages_cpp)
 
 if(CATKIN_ENABLE_TESTING)
@@ -206,8 +206,8 @@ if(CATKIN_ENABLE_TESTING)
 
   add_rostest_gtest(
   foodTest
-  test/foodTest.cpp
   test/foodTest.launch
+  test/foodTest.cpp
   src/food.cpp
   )
   target_link_libraries(
