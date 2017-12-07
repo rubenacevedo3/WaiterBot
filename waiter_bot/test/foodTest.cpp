@@ -34,9 +34,8 @@
 /**
  * @brief This tests makes sure that the constructor sets the foodWeight=0
  * It also test the get food weight at the same time.
- *
  */
-TEST(foodTest1, constructorTest) {
+TEST(foodTest, constructorTest) {
   food f;
   EXPECT_EQ(0,f.getFoodWeight());
 }
@@ -74,10 +73,5 @@ TEST(foodTest, removeFoodTest) {
   EXPECT_EQ(5,f.getFoodWeight());
   f.removeFood();
   EXPECT_EQ(0,f.getFoodWeight());
-}
-
-int main(int argc, char **argv) {
-  testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
 }
 
