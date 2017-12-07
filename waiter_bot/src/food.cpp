@@ -1,7 +1,7 @@
 /**
  *@author Ruben Acevedo
  *@file food.cpp
- *@brief This is the ".cpp" file for the food Class node
+ *@brief This is the ".cpp" file for the food Class
  *@copyright [2017] Ruben Acevedo
  *
  * This file implements the methods and attributes of the
