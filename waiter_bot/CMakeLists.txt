@@ -192,7 +192,7 @@ include_directories(
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
 
-add_executable(waiterBot_node src/waiterBot_node.cpp src/food.cpp)
+add_executable(waiterBot_node src/waiterBot_node.cpp src/food.cpp src/forceSensor.cpp)
 target_link_libraries(waiterBot_node ${catkin_LIBRARIES})
 #add_dependencies(waiterBot_node waiter_bot_generate_messages_cpp)
 
