@@ -1,7 +1,7 @@
 /**
  * @author Ruben Acevedo
- * @file forceSensorTest.cpp
- * @brief This is the ".cpp" file for testing the force sensor class
+ * @file positionTest.cpp
+ * @brief This is the ".cpp" file for testing the position class
  * @copyright [2017] Ruben Acevedo
  */
 /**
@@ -27,47 +27,33 @@
  * DEALINGS IN THE SOFTWARE. © 2017 GitHub, Inc.
  */
 
-#include <ros/ros.h>
 #include <gtest/gtest.h>
-#include <std_msgs/Float32.h>
-#include "forceSensor.hpp"
+#include <vector>
+#include "position.hpp"
 
-//! test the forceSensor constructor 
+//! test the position constructor
 /**
- * @brief This tests makes sure that the constructor sets the Weight=0
- * It also test the get food weight at the same time.
+ * @brief This tests makes sure that the constructor sets everything to 0
+ * It also test the getPos() at the same time.
  */
-TEST(forceSensorTest, constructorTest) {
-  forceSensor f;
-  EXPECT_EQ(0,f.getWeight());
+TEST(positionTest, constructorTest) {
+  position pos;
+  auto v = pos.getPos();
+  EXPECT_EQ(0, v[0]);
+  EXPECT_EQ(0, v[1]);
+  EXPECT_EQ(0, v[2]);
 }
 
-//! test the forceSensor isEmpty() function 
+//! test the setPosition function
 /**
- * @brief This tests makes sure the sensor can correctly read data
- * It will make sure that the function can read published data
- * from the force topic
+ * @brief This tests that you can set the position
+ * It also test the getPos() at the same time.
  */
-TEST(forceSensorTest, isEmptyTest) {
-  forceSensor f;
-  //ros::init();
-  //ros::NodeHandle n;
-
-  /**
-   * create a Float32 message publisher that publishes
-   * the food weight to the topic "force"
-   */
-  //ros::Publisher pub = n.advertise<std_msgs::Float32>("force", 1000);
-  //ros::Rate loop_rate(10);
-
-  //int i = 0;
-  //while (i < 100) {
-    //std_msgs::Float32 msg;
-    //msg.data = 10;
-    //pub.publish(msg);
-    //ROS_INFO("Food Weight published: %f", msg.data);
-    //ros::spinOnce();
-    //loop_rate.sleep();
-  //}
-  EXPECT_TRUE(true);
+TEST(positionTest, setPositionTest) {
+  position pos;
+  pos.setPosition(6, 2, 0.5);
+  auto v = pos.getPos();
+  EXPECT_EQ(6, v[0]);
+  EXPECT_EQ(2, v[1]);
+  EXPECT_EQ(0.5, v[2]);
 }
