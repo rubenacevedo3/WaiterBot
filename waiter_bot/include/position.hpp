@@ -58,7 +58,7 @@ class position {
    */
   void setPosition(float x, float y, float t);
 
-  //! get the position function 
+  //! get the position function
   /**
    * @brief This function returns the stored position
    * in the form of a vector where

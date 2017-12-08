@@ -41,7 +41,7 @@
  * @return nothing
  */
 position::position(): xpos(0), ypos(0), theta(0) {
-} 
+}
 
 //! Set the Position Function
 /**
@@ -55,7 +55,7 @@ void position::setPosition(float x, float y, float t) {
   theta = t;
 }
 
-//! get the position function 
+//! get the position function
 /**
  * @brief This function returns the stored position
  * in the form of a vector where

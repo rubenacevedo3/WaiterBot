@@ -1,6 +1,6 @@
 /**
  *@author Ruben Acevedo
- *@file command.hpp
+ *@file forceSensor.hpp
  *@brief This is the ".hpp" file for the force sensor Class
  *@copyright [2017] Ruben Acevedo
  *
@@ -58,7 +58,7 @@ class forceSensor {
    */
   bool isEmpty();
 
-  //! get the weight function 
+  //! get the weight function
   /**
    * @brief This function gets the weight value
    * @param nothing
