@@ -205,13 +205,16 @@ if(CATKIN_ENABLE_TESTING)
   #include_directories( ${PROJECT_NAME}/include ${catkin_INCLUDE_DIRS})
 
   add_rostest_gtest(
-  foodTest
-  test/foodTest.launch
+  mainTest
+  test/mainTest.launch
+  test/mainTest.cpp
   test/foodTest.cpp
+  test/forceSensorTest.cpp
   src/food.cpp
+  src/forceSensor.cpp
   )
   target_link_libraries(
-  foodTest
+  mainTest
   ${catkin_LIBRARIES} 
   )
   #add_dependencies(

@@ -44,7 +44,8 @@ float w= -1;
  * @return nothing
  */
 void getWeightCallBack(const std_msgs::Float32::ConstPtr& force_msg) {
-      w = force_msg->data;
+  ROS_INFO("I recieved: [%f] Newtons", force_msg->data);
+  w = force_msg->data;
 } 
 
 //! Class Constructor
