@@ -65,7 +65,7 @@ class forceSensor {
    * repersenting the values that the force sensor reads
    * @return nothing
    */
-  void setweightCallBack(const std_msgs::Float32& force_msg);
+  void setWeightCallBack(const std_msgs::Float32& force_msg);
 
   //! Private Attributes
  private:

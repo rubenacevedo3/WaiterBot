@@ -27,47 +27,29 @@
  * DEALINGS IN THE SOFTWARE. © 2017 GitHub, Inc.
  */
 
-#include <ros/ros.h>
 #include <gtest/gtest.h>
 #include <std_msgs/Float32.h>
 #include "forceSensor.hpp"
 
-//! test the forceSensor constructor 
+//! test the forceSensor constructor
 /**
- * @brief This tests makes sure that the constructor sets the Weight=0
+ * @brief This tests makes sure that the constructor sets the Weight=-1
  * It also test the get food weight at the same time.
  */
 TEST(forceSensorTest, constructorTest) {
   forceSensor f;
-  EXPECT_EQ(0,f.getWeight());
+  EXPECT_EQ(-1, f.getWeight());
 }
 
-//! test the forceSensor isEmpty() function 
+//! test the set weight function
 /**
- * @brief This tests makes sure the sensor can correctly read data
- * It will make sure that the function can read published data
- * from the force topic
+ * @brief This tests makes sure the function sets the weight
+ * given a Float32 message
  */
-TEST(forceSensorTest, isEmptyTest) {
+TEST(forceSensorTest, setWeightCallBackFunctionTest) {
   forceSensor f;
-  //ros::init();
-  //ros::NodeHandle n;
-
-  /**
-   * create a Float32 message publisher that publishes
-   * the food weight to the topic "force"
-   */
-  //ros::Publisher pub = n.advertise<std_msgs::Float32>("force", 1000);
-  //ros::Rate loop_rate(10);
-
-  //int i = 0;
-  //while (i < 100) {
-    //std_msgs::Float32 msg;
-    //msg.data = 10;
-    //pub.publish(msg);
-    //ROS_INFO("Food Weight published: %f", msg.data);
-    //ros::spinOnce();
-    //loop_rate.sleep();
-  //}
-  EXPECT_TRUE(true);
+  std_msgs::Float32 msg;
+  msg.data = 25;
+  f.setWeightCallBack(msg);
+  EXPECT_EQ(25, f.getWeight());
 }

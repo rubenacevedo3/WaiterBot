@@ -60,7 +60,7 @@ float forceSensor::getWeight() {
  * repersenting the values that the force sensor reads
  * @return nothing
  */
-void forceSensor::setweightCallBack(const std_msgs::Float32& force_msg) {
+void forceSensor::setWeightCallBack(const std_msgs::Float32& force_msg) {
   weight = force_msg.data;
 }
 
