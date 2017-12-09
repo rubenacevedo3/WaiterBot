@@ -46,7 +46,9 @@ position::position(): xpos(0), ypos(0), theta(0) {
 //! Set the Position Function
 /**
  * @brief This sets the postion
- * @param nothing
+ * @param a const float reference
+ * @param a const float reference
+ * @param a const float reference
  * @return nothing
  */
 void position::setPosition(const float& x, const float& y, const float& t) {

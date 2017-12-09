@@ -53,7 +53,9 @@ class position {
   //! Set the Position Function
   /**
    * @brief This sets the postion
-   * @param nothing
+   * @param a const float reference
+   * @param a const float reference
+   * @param a const float reference
    * @return nothing
    */
   void setPosition(const float& x, const float& y, const float& t);
