@@ -36,7 +36,7 @@
 
 //! A force sensor Class
 /**
- * @brief This class subscirbes to the food weight being published
+ * @brief This class stores data from the force sensor
  */
 class forceSensor {
   //! Public Methods
@@ -44,42 +44,34 @@ class forceSensor {
   //! Class Constructor
   /**
    * @brief This code constructs the class.
-   * It initializes the weight to be 0
+   * It initializes the weight to be -1
    * @param nothing
    * @return nothing
    */
   forceSensor();
 
-  //! Checks to see if it has food funciton
-  /**
-   * @brief This code checks to see if the weight is 0
-   * @param nothing
-   * @return bool
-   */
-  bool isEmpty();
-
   //! get the weight function
   /**
    * @brief This function gets the weight value
    * @param nothing
-   * @return bool
+   * @return float repesenting the weight value
    */
   float getWeight();
 
-  //! Private Methods and Attributes
- private:
-
-  //! set the weight function 
+  //! set the weight function
   /**
-   * @brief This function sets the weight to be the subscribed message value
-   * @param nothing
+   * @brief This function sets the weight value
+   * @param a const std_msgs::Float32 reference message type
+   * repersenting the values that the force sensor reads
    * @return nothing
    */
-  void setWeight();
+  void setweightCallBack(const std_msgs::Float32& force_msg);
 
+  //! Private Attributes
+ private:
   //! weight
   /**
-   * @brief this float repersents the weight the sensor senses
+   * @brief this float repersents the weight the force sensor senses
    * on the robots tray
    */
   float weight;

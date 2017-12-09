@@ -30,81 +30,37 @@
  * DEALINGS IN THE SOFTWARE. © 2017 GitHub, Inc.
  */
 
-#include <ros/ros.h>
 #include <std_msgs/Float32.h>
 #include "forceSensor.hpp"
-
-//! Global Variable
-float w= -1;
-
-//! weight call back function 
-/**
- * @brief This function sets the global variable to be the force_msg
- * @param nothing
- * @return nothing
- */
-void getWeightCallBack(const std_msgs::Float32::ConstPtr& force_msg) {
-  ROS_INFO("I recieved: [%f] Newtons", force_msg->data);
-  w = force_msg->data;
-} 
 
 //! Class Constructor
 /**
  * @brief This code constructs the class.
- * It initializes the weight to be 0
+ * It initializes the weight to be -1
  * @param nothing
  * @return nothing
  */
-forceSensor::forceSensor(): weight(0) {
+forceSensor::forceSensor(): weight(-1) {
 }
 
-//! set the weight function 
-/**
- * @brief This function sets the weight to be the subscribed message value
- * @param nothing
- * @return nothing
- */
-void forceSensor::setWeight() {
-  weight = w;
-}
-
-//! get the weight function 
+//! get the weight function
 /**
  * @brief This function gets the weight value
  * @param nothing
- * @return bool
+ * @return float repesenting the weight value
  */
 float forceSensor::getWeight() {
   return weight;
 }
 
-//! Checks to see if it has food funciton
+//! set the weight function
 /**
- * @brief This code checks to see if the weight is 0
- * @param nothing
- * @return bool
+ * @brief This function sets the weight value
+ * @param a const std_msgs::Float32 reference message type
+ * repersenting the values that the force sensor reads
+ * @return nothing
  */
-bool forceSensor::isEmpty() {
-  /**
-   * reset the global variable
-   */
-  w = -1; 
-
-  /**
-   * Create the force topic subscriber 
-   */
-  ros::NodeHandle n;
-  ros::Subscriber sub = n.subscribe("force", 1000, getWeightCallBack);
-  setWeight();
-  ros::spin();
-
- /**
-  * Checks to see if the subscribere is reading a zero value
-  */ 
- if (weight == 0) {
-    return true;
-  } else {
-      return false;
-    }
+void forceSensor::setweightCallBack(const std_msgs::Float32& force_msg) {
+  weight = force_msg.data;
 }
 
