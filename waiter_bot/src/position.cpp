@@ -46,9 +46,9 @@ position::position(): xpos(0), ypos(0), theta(0) {
 //! Set the Position Function
 /**
  * @brief This sets the postion
- * @param a const float reference
- * @param a const float reference
- * @param a const float reference
+ * @param a const float reference for the x coordinate
+ * @param a const float reference for the y coordinate
+ * @param a const float reference for the theta coordinate
  * @return nothing
  */
 void position::setPosition(const float& x, const float& y, const float& t) {
@@ -64,7 +64,7 @@ void position::setPosition(const float& x, const float& y, const float& t) {
  * the first element is xpos, the second is
  * y pos, and the third is theta
  * @param nothing
- * @return a float vector 
+ * @return a float vector repesenting the position
  */
 std::vector<float> position::getPos() {
   std::vector<float> v;
