@@ -56,7 +56,7 @@ class position {
    * @param nothing
    * @return nothing
    */
-  void setPosition(float x, float y, float t);
+  void setPosition(const float& x, const float& y, const float& t);
 
   //! get the position function
   /**

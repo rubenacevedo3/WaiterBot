@@ -49,7 +49,7 @@ position::position(): xpos(0), ypos(0), theta(0) {
  * @param nothing
  * @return nothing
  */
-void position::setPosition(float x, float y, float t) {
+void position::setPosition(const float& x, const float& y, const float& t) {
   xpos = x;
   ypos = y;
   theta = t;
