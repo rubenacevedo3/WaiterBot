@@ -67,7 +67,8 @@ bool distSensor::inCollison() {
  * repersenting the values that the distance sensor reads. 
  * @return nothing
  */
-void distSensor::setDistReadingCallBack(const sensor_msgs::LaserScan& scan_msg) {
+void distSensor::setDistReadingCallBack
+  (const sensor_msgs::LaserScan& scan_msg) {
   float sum = 0;
   for (auto d : scan_msg.ranges) {
     sum = sum + d;
