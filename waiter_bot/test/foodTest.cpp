@@ -30,17 +30,17 @@
 #include <gtest/gtest.h>
 #include "food.hpp"
 
-//! test the food constructor 
+//! test the food constructor
 /**
  * @brief This tests makes sure that the constructor sets the foodWeight=0
  * It also test the get food weight at the same time.
  */
 TEST(foodTest, constructorTest) {
   food f;
-  EXPECT_EQ(0,f.getFoodWeight());
+  EXPECT_EQ(0, f.getFoodWeight());
 }
 
-//! test the addFood function 
+//! test the addFood function
 /**
  * @brief This tests makes sure when the addFood function is called it sets it to 
  * 25 Newtons
@@ -48,12 +48,12 @@ TEST(foodTest, constructorTest) {
 TEST(foodTest, addFoodTest) {
   food f;
   f.addFood();
-  EXPECT_EQ(25,f.getFoodWeight());
+  EXPECT_EQ(25, f.getFoodWeight());
   f.addFood();
-  EXPECT_EQ(25,f.getFoodWeight());
+  EXPECT_EQ(25, f.getFoodWeight());
 }
 
-//! test the removeFood function 
+//! test the removeFood function
 /**
  * @brief This tests makes sure that when removeFood is called the weight reduces. 
  * It also checks that the foodweight can never be negative
@@ -61,17 +61,17 @@ TEST(foodTest, addFoodTest) {
 TEST(foodTest, removeFoodTest) {
   food f;
   f.removeFood();
-  EXPECT_EQ(0,f.getFoodWeight());
+  EXPECT_EQ(0, f.getFoodWeight());
   f.addFood();
   f.removeFood();
-  EXPECT_EQ(20,f.getFoodWeight());
+  EXPECT_EQ(20, f.getFoodWeight());
   f.removeFood();
-  EXPECT_EQ(15,f.getFoodWeight());
+  EXPECT_EQ(15, f.getFoodWeight());
   f.removeFood();
-  EXPECT_EQ(10,f.getFoodWeight());
+  EXPECT_EQ(10, f.getFoodWeight());
   f.removeFood();
-  EXPECT_EQ(5,f.getFoodWeight());
+  EXPECT_EQ(5, f.getFoodWeight());
   f.removeFood();
-  EXPECT_EQ(0,f.getFoodWeight());
+  EXPECT_EQ(0, f.getFoodWeight());
 }
 
