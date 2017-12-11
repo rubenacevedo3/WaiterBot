@@ -202,14 +202,14 @@ add_executable(waiterBot_node
 target_link_libraries(waiterBot_node ${catkin_LIBRARIES})
 #add_dependencies(waiterBot_node waiter_bot_generate_messages_cpp)
 
-#add_executable(food src/food.cpp)
-#target_link_libraries(food ${catkin_LIBRARIES})
+add_executable(test_node src/test_node.cpp)
+target_link_libraries(test_node ${catkin_LIBRARIES})
 #add_dependencies(food waiter_bot_generate_messages_cpp)
 
 if(CATKIN_ENABLE_TESTING)
   find_package(rostest REQUIRED)
   #include_directories( ${PROJECT_NAME}/include ${catkin_INCLUDE_DIRS})
-
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0 --coverage")
   add_rostest_gtest(
   mainTest
   test/mainTest.launch
@@ -217,9 +217,11 @@ if(CATKIN_ENABLE_TESTING)
   test/foodTest.cpp
   test/forceSensorTest.cpp
   test/positionTest.cpp
+  test/distSensorTest.cpp
   src/food.cpp
   src/forceSensor.cpp
   src/position.cpp
+  src/distSensor.cpp
   )
   target_link_libraries(
   mainTest

@@ -1,8 +1,9 @@
 /**
- * @author Ruben Acevedo
- * @file mainTest.cpp
- * @brief This is the ".cpp" file for the int main()
- * @copyright [2017] Ruben Acevedo
+ *@author Ruben Acevedo
+ *@file test_node.cpp
+ *@brief This is the ".cpp" file for the test node
+ *@copyright [2017] Ruben Acevedo
+ *
  */
 /**
  * MIT License
@@ -27,15 +28,42 @@
  * DEALINGS IN THE SOFTWARE. © 2017 GitHub, Inc.
  */
 
-#include <gtest/gtest.h>
+#include <sensor_msgs/LaserScan.h>
+// #include <geometry_msgs/Twist.h>
+// #include <std_msgs/String.h>
 #include <ros/ros.h>
+#include "distSensor.hpp"
 
-//! int main() for tests
 /**
- * @brief This runs all the test in the test folder
- */
+* @brief This node run is used for testing
+* The node publishes sensor_msgs::LaserScan data
+*/
 int main(int argc, char **argv) {
-  ros::init(argc, argv, "talkerTest");
-  testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
+  /**
+   * This is creating a sensor_msgs::LaserScan publisher
+   * to test the distSensor class
+   */
+  ros::init(argc, argv, "test_node");
+  ros::NodeHandle n;
+  ros::Publisher scan_pub = n.advertise<sensor_msgs::LaserScan>("scan", 50);
+  unsigned int num_readings = 100;
+  ros::Rate r(1.0);
+  int t = 0;
+  float v = 0.05;
+  while (t < 5) {
+    // generate some fake data for our laser scan
+    sensor_msgs::LaserScan scan;
+    scan.ranges.resize(num_readings);
+    int i = 0;
+    while (i < num_readings) {
+      scan.ranges[i] = v;
+      ROS_DEBUG("%f", scan.ranges[i]);
+      i++;
+    }
+    scan_pub.publish(scan);
+    ROS_INFO("Publishing Scan Data");
+    r.sleep();
+    t++;
+  }
+  return 0;
 }

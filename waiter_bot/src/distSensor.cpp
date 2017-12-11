@@ -51,27 +51,37 @@ distSensor::distSensor(): distReading(1000000) {
  * @param nothing
  * @return bool repesenting whether it senses a collision or not
  */
-bool distSensor::inCollison() {
+bool distSensor::inCollision() {
   if (distReading < 0.1) {
     return true;
   }
   return false;
 }
 
+//! gets the distReading function
+/**
+ * @brief This function returns the distReading value
+ * @param nothing
+ * @return float repesenting distReading value
+ */
+  float distSensor::getDistReading() {
+    return distReading;
+  }
+
 //! set the distance reading function
 /**
  * @brief This function sets the distReading value.
  * This function finds the average value of the LaserScan message and 
  * sets it to be the distReading value
- * @param a const sensor_msgs::LaserScan reference message type
+ * @param a const sensor_msgs::LaserScan::ConstPtr reference message type
  * repersenting the values that the distance sensor reads. 
  * @return nothing
  */
 void distSensor::setDistReadingCallBack
-  (const sensor_msgs::LaserScan& scan_msg) {
+  (const sensor_msgs::LaserScan::ConstPtr& scan_msg) {
   float sum = 0;
-  for (auto d : scan_msg.ranges) {
+  for (auto d : scan_msg->ranges) {
     sum = sum + d;
   }
-  distReading = sum/scan_msg.ranges.size();
+  distReading = sum/scan_msg->ranges.size();
 }

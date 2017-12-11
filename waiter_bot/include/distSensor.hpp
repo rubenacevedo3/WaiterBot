@@ -58,18 +58,26 @@ class distSensor {
    * @param nothing
    * @return bool repesenting whether it senses a collision or not
    */
-  bool inCollison();
+  bool inCollision();
+
+  //! gets the distReading function
+  /**
+   * @brief This function returns the distReading value
+   * @param nothing
+   * @return float repesenting distReading value
+   */
+  float getDistReading();
 
   //! set the distance reading function
   /**
    * @brief This function sets the distReading value.
    * This function finds the average value of the LaserScan message and 
    * sets it to be the distReading value
-   * @param a const sensor_msgs::LaserScan reference message type
+   * @param a const sensor_msgs::LaserScan::ConstPtr reference message type
    * repersenting the values that the distance sensor reads. 
    * @return nothing
    */
-  void setDistReadingCallBack(const sensor_msgs::LaserScan& scan_msg);
+  void setDistReadingCallBack(const sensor_msgs::LaserScan::ConstPtr& scan_msg);
 
   //! Private Attributes
  private:
