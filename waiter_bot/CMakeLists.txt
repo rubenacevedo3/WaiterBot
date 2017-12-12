@@ -199,6 +199,7 @@ add_executable(waiterBot_node
   src/position.cpp
   src/distSensor.cpp
   src/motionModule.cpp
+  src/waiterBot.cpp
 )
 target_link_libraries(waiterBot_node ${catkin_LIBRARIES})
 #add_dependencies(waiterBot_node waiter_bot_generate_messages_cpp)
