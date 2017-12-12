@@ -102,7 +102,8 @@ void motionModule::stop(bool b) {
  * @param a const nav_msgs::Odometry message reference from the odometry sensor
  * @return nothing
  */
-void motionModule::setDistReadingCallBack(const nav_msgs::Odometry& odo_msg) {
+void motionModule::setCurrentLocationCallBack
+  (const nav_msgs::Odometry& odo_msg) {
   auto x = odo_msg.pose.covariance[0];
   auto y = odo_msg.pose.covariance[1];
   auto theta = odo_msg.pose.covariance[5];

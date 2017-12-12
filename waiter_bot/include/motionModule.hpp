@@ -94,7 +94,7 @@ class motionModule {
    * @param a const nav_msgs::Odometry message reference from the odometry sensor
    * @return nothing
    */
-  void setDistReadingCallBack(const nav_msgs::Odometry& odo_msg);
+  void setCurrentLocationCallBack(const nav_msgs::Odometry& odo_msg);
 
   //! Private Attributes
  private:

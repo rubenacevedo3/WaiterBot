@@ -219,10 +219,12 @@ if(CATKIN_ENABLE_TESTING)
   test/forceSensorTest.cpp
   test/positionTest.cpp
   test/distSensorTest.cpp
+  test/motionModuleTest.cpp
   src/food.cpp
   src/forceSensor.cpp
   src/position.cpp
   src/distSensor.cpp
+  src/motionModule.cpp
   )
   target_link_libraries(
   mainTest
