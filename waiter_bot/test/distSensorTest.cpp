@@ -68,7 +68,7 @@ TEST(distSensorTest, setDistReadingCallBackTest) {
     &distSensor::setDistReadingCallBack, &ds);
   ros::Duration(1).sleep();
   ros::spinOnce();
-  EXPECT_NEAR(0.05, ds.getDistReading(), 0.001);
+  EXPECT_FLOAT_EQ(0.05, ds.getDistReading());
   EXPECT_TRUE(ds.inCollision());
 }
 
