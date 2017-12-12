@@ -47,10 +47,11 @@
  * It sets the target locations to be 
  * (0,0) (10,0) (10,10) (10,0)
  * It sets the status to "in target location 1"
+ * Sets the stopB to false;
  * @param nothing
  * @return nothing
  */
-waiterBot::waiterBot(): status("in target location 1") {
+waiterBot::waiterBot(): status("in target location 1"), stopB(false) {
   position p;
   p.setPosition(0, 0, 0);
   targetLocs.push_back(p);
@@ -80,6 +81,16 @@ std::string waiterBot::getStatus() {
  */
 std::vector<position> waiterBot::getTargetLocs() {
   return targetLocs;
+}
+
+//! sees if the robot stopped function
+/**
+ * @brief This function to see whether the robot stopped or not
+ * @param nothing
+ * @return a bool repersenting whether or not the robot stopped
+ */
+bool waiterBot::didStop() {
+  return stopB;
 }
 
 //! get the angle difference function
@@ -147,8 +158,11 @@ geometry_msgs::Twist waiterBot::move() {
   if (ds.inCollision()) {
     vel.linear.x = 0;
     vel.angular.z = 0;
+    stopB = true;
     return vel;  // robot stops
-  }
+  } else {
+      stopB = false;
+    }
 
   /**
    * Check to see if the robot has food

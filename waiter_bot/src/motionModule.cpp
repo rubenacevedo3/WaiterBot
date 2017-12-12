@@ -39,11 +39,10 @@
 //! Class Constructor
 /**
  * @brief This code constructs the class.
- * It sets the stop boolean to be false
  * @param nothing
  * @return nothing
  */
-motionModule::motionModule(): stopB(true) {
+motionModule::motionModule() {
 }
 
 //! checks to see if the robot is in a region
@@ -72,26 +71,6 @@ bool motionModule::inRegion(position pos) {
  */
 position motionModule::getCurrentLoc() {
   return currentLoc;
-}
-
-//! sees if the robot stopped function
-/**
- * @brief This function to see whether the robot stopped or not
- * @param nothing
- * @return a bool repersenting whether or not the robot stopped
- */
-bool motionModule::didStop() {
-  return stopB;
-}
-
-//! mark the robot as stopped function
-/**
- * @brief This function sets the stopB
- * @para a bool repesenting whether or not the robot should stop
- * @return nothing
- */
-void motionModule::stop(bool b) {
-  stopB = b;
 }
 
 //! sets the current location of the robot

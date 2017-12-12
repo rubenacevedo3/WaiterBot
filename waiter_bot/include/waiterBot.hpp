@@ -54,6 +54,7 @@ class waiterBot {
    * It sets the target locations to be 
    * (0,0) (10,0) (10,10) (10,0)
    * It sets the status to "in target location 1"
+   * Sets the stopB to false;
    * @param nothing
    * @return nothing
    */
@@ -74,6 +75,14 @@ class waiterBot {
    * @return a position vector list of all the target locations
    */
   std::vector<position> getTargetLocs();
+
+  //! sees if the robot stopped function
+  /**
+   * @brief This function to see whether the robot stopped or not
+   * @param nothing
+   * @return a bool repersenting whether or not the robot stopped
+   */
+  bool didStop();
 
   //! get the angle difference function
   /**
@@ -142,8 +151,15 @@ class waiterBot {
    * "heading to target location 2"
    * "heading to target location 3"
    * "heading to target location 4"
+   * "stopped"
    */
   std::string status;
+
+  //! Stop boolean
+  /**
+   * @brief this boolean states whether or not the robot is suppose to stop 
+   */
+  bool stopB;
 };
 
 #endif  // CATKIN_WS_SRC_WAITERBOT_WAITER_BOT_INCLUDE_WAITERBOT_HPP_

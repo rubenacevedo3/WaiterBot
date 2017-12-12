@@ -45,8 +45,6 @@ class motionModule {
   //! Class Constructor
   /**
    * @brief This code constructs the class.
-   * It initializes the current position to be (0,0,0).
-   * It sets the stop boolean to be false
    * @param nothing
    * @return nothing
    */
@@ -70,22 +68,6 @@ class motionModule {
    */
   position getCurrentLoc();
 
-  //! sees if the robot stopped function
-  /**
-   * @brief This function to see whether the robot stopped or not
-   * @param nothing
-   * @return a bool repersenting whether or not the robot stopped
-   */
-  bool didStop();
-
-  //! mark the robot as stopped function
-  /**
-   * @brief This function sets the stopB
-   * @para a bool repesenting whether or not the robot should stop
-   * @return nothing
-   */
-  void stop(bool b);
-
   //! sets the current location of the robot
   /**
    * @brief This function sets the current location of the robot.
@@ -103,12 +85,6 @@ class motionModule {
    * @brief this position repersents the robots current location 
    */
   position currentLoc;
-
-  //! Stop boolean
-  /**
-   * @brief this boolean states whether or not the robot is suppose to stop 
-   */
-  bool stopB;
 };
 
 #endif  // CATKIN_WS_SRC_WAITERBOT_WAITER_BOT_INCLUDE_MOTIONMODULE_HPP_
