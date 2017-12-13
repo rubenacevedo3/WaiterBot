@@ -1,11 +1,11 @@
 /**
  *@author Ruben Acevedo
- *@file food.cpp
- *@brief This is the ".cpp" file for the food Class
+ *@file foodStub.cpp
+ *@brief This is the ".cpp" file for the food stub Class
  *@copyright [2017] Ruben Acevedo
  *
  * This file implements the methods and attributes of the
- * food Class.
+ * food stub Class.
  */
 /**
  * MIT License
@@ -30,17 +30,8 @@
  * DEALINGS IN THE SOFTWARE. © 2017 GitHub, Inc.
  */
 
-#include <ros/ros.h>
 #include <std_msgs/Float32.h>
-#include "food.hpp"
-
-
-//! Global Variable
-/**
- * This sets the max food weight
- * to be 25 Newtons
- */
-float maxFoodWeight = 25;
+#include "foodStub.hpp"
 
 //! Class Constructor
 /**
@@ -49,16 +40,16 @@ float maxFoodWeight = 25;
  * @param nothing
  * @return nothing
  */
-food::food(): foodWeight(0) {
+foodStub::foodStub(): foodWeight(0) {
 }
 
 //! get food weight function
 /**
  * @brief This code returns the food weight
  * @param nothing
- * @return float
+ * @return float repersenting the foodWeight value
  */
-float food::getFoodWeight() {
+float foodStub::getFoodWeight() {
   return foodWeight;
 }
 
@@ -68,8 +59,8 @@ float food::getFoodWeight() {
  * @param nothing
  * @return nothing
  */
-void food::addFood() {
-  foodWeight = maxFoodWeight;
+void foodStub::addFood() {
+  foodWeight = 25;
 }
 
 //! decrease food weight function
@@ -78,12 +69,33 @@ void food::addFood() {
  * @param nothing
  * @return nothing
  */
-void food::removeFood() {
-  if (foodWeight - 0.2*maxFoodWeight < 0) {
+void foodStub::removeFood() {
+  if (foodWeight - 0.2*25 < 0) {
     foodWeight = 0;
     return;
   }
-  foodWeight = foodWeight - 0.2*maxFoodWeight;
+  foodWeight = foodWeight - 0.2*25;
+}
+
+//! publish food weight function
+/**
+ * @brief This function returns the food publish message
+ * @param nothing
+ * @return a std_msgs::Float32 message repersenting the food weight
+ */
+std_msgs::Float32 foodStub::pubFood() {
+  if (r.getStatus() == "in target location 1") {
+    addFood();
+  }
+  if (r.getStatus() == "in target location 2" ||
+    r.getStatus() == "in target location 3" ||
+    r.getStatus() == "in target location 4" ||
+    r.didStop()) {
+      removeFood();
+  }
+  std_msgs::Float32 s;
+  s.data = foodWeight;
+  return s;
 }
 
 

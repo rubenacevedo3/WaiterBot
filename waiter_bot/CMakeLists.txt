@@ -194,7 +194,7 @@ include_directories(
 
 add_executable(waiterBot_node 
   src/waiterBot_node.cpp 
-  src/food.cpp 
+  #src/food.cpp 
   src/forceSensor.cpp
   src/position.cpp
   src/distSensor.cpp
@@ -208,6 +208,17 @@ add_executable(test_node src/test_node.cpp)
 target_link_libraries(test_node ${catkin_LIBRARIES})
 #add_dependencies(food waiter_bot_generate_messages_cpp)
 
+add_executable(foodStub_node 
+  src/foodStub_node.cpp 
+  src/forceSensor.cpp
+  src/position.cpp
+  src/distSensor.cpp
+  src/motionModule.cpp
+  src/waiterBot.cpp
+  src/foodStub.cpp
+)
+target_link_libraries(foodStub_node ${catkin_LIBRARIES})
+
 if(CATKIN_ENABLE_TESTING)
   find_package(rostest REQUIRED)
   #include_directories( ${PROJECT_NAME}/include ${catkin_INCLUDE_DIRS})
@@ -216,13 +227,13 @@ if(CATKIN_ENABLE_TESTING)
   mainTest
   test/mainTest.launch
   test/mainTest.cpp
-  test/foodTest.cpp
+  #test/foodTest.cpp
   test/forceSensorTest.cpp
   test/positionTest.cpp
   test/distSensorTest.cpp
   test/motionModuleTest.cpp
   test/waiterBotTest.cpp
-  src/food.cpp
+  #src/food.cpp
   src/forceSensor.cpp
   src/position.cpp
   src/distSensor.cpp

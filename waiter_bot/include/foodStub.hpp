@@ -1,11 +1,11 @@
 /**
  *@author Ruben Acevedo
- *@file command.hpp
- *@brief This is the ".hpp" file for the food Class
+ *@file foodStub.hpp
+ *@brief This is the ".hpp" file for the food stub Class
  *@copyright [2017] Ruben Acevedo
  *
  * This file will define the methods and attributes of the
- * food Class
+ * food stub Class
  */
 /**
  * MIT License
@@ -29,15 +29,18 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE. © 2017 GitHub, Inc.
  */
-#ifndef CATKIN_WS_SRC_WAITERBOT_WAITER_BOT_INCLUDE_FOOD_HPP_
-#define CATKIN_WS_SRC_WAITERBOT_WAITER_BOT_INCLUDE_FOOD_HPP_
+#ifndef CATKIN_WS_SRC_WAITERBOT_WAITER_BOT_INCLUDE_FOODSTUB_HPP_
+#define CATKIN_WS_SRC_WAITERBOT_WAITER_BOT_INCLUDE_FOODSTUB_HPP_
 
-//! A command Class
+#include <std_msgs/Float32.h>
+#include "waiterBot.hpp"
+
+//! A food stub Class
 /**
  * @brief This class publishes food weight that the
  * force sensor can read 
  */
-class food {
+class foodStub {
   //! Public Methods
  public:
   //! Class Constructor
@@ -47,13 +50,13 @@ class food {
    * @param nothing
    * @return nothing
    */
-  food();
+  foodStub();
 
   //! get food weight function
   /**
    * @brief This code returns the food weight
    * @param nothing
-   * @return float
+   * @return float repersenting the foodWeight value
    */
   float getFoodWeight();
 
@@ -73,6 +76,14 @@ class food {
    */
   void removeFood();
 
+  //! publish food weight function
+  /**
+   * @brief This function returns the food publish message
+   * @param nothing
+   * @return a std_msgs::Float32 message repersenting the food weight
+   */
+  std_msgs::Float32 pubFood();
+
   //! Private Attributes
  private:
   //! food weight
@@ -81,6 +92,13 @@ class food {
    * on the robots tray
    */
   float foodWeight;
+  //! waiterBot
+  /**
+   * @brief this waiterBot repersents the robot
+   * It is used to keep track of the robots position
+   * so the food stub know how much food it should output
+   */
+  waiterBot r;
 };
 
-#endif  // CATKIN_WS_SRC_WAITERBOT_WAITER_BOT_INCLUDE_FOOD_HPP_
+#endif  // CATKIN_WS_SRC_WAITERBOT_WAITER_BOT_INCLUDE_FOODSTUB_HPP_
