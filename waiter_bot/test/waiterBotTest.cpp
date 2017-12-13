@@ -163,9 +163,9 @@ TEST(waiterBotTest, moveNoFoodTest) {
    * since here it can never not have food
    */
   nav_msgs::Odometry omsg;
-  omsg.pose.covariance[0] = 6;
-  omsg.pose.covariance[1] = 2;
-  omsg.pose.covariance[5] = 1;
+  omsg.pose.pose.position.x = 6;
+  omsg.pose.pose.position.y = 2;
+  omsg.pose.pose.orientation.z = 1;
   r.mm.setCurrentLocationCallBack(omsg);
 
   auto m = r.move();
@@ -186,47 +186,47 @@ TEST(waiterBotTest, moveInTargetLocationTest) {
    * place robot in location 2
    */
   nav_msgs::Odometry omsg;
-  omsg.pose.covariance[0] = 10;
-  omsg.pose.covariance[1] = 0;
-  omsg.pose.covariance[5] = 0;
+  omsg.pose.pose.position.x = 10;
+  omsg.pose.pose.position.y = 0;
+  omsg.pose.pose.orientation.z = 0;
   r.mm.setCurrentLocationCallBack(omsg);
   auto m = r.move();
   EXPECT_EQ("in target location 2", r.getStatus());
-  m = r.move();
+  auto m11 = r.move();
   EXPECT_EQ("heading to target location 3", r.getStatus());
 
   /**
    * place robot in location 3
    */
-  omsg.pose.covariance[0] = 10;
-  omsg.pose.covariance[1] = 10;
-  omsg.pose.covariance[5] = 3.14/2;
+  omsg.pose.pose.position.x = 10;
+  omsg.pose.pose.position.y = 10;
+  omsg.pose.pose.orientation.z = 3.14/2;
   r.mm.setCurrentLocationCallBack(omsg);
-  m = r.move();
+  auto m2 = r.move();;
   EXPECT_EQ("in target location 3", r.getStatus());
-  m = r.move();
+  auto m3 = r.move();
   EXPECT_EQ("heading to target location 4", r.getStatus());
 
   /**
    * place robot in location 4
    */
-  omsg.pose.covariance[0] = 0;
-  omsg.pose.covariance[1] = 10;
-  omsg.pose.covariance[5] = 3.14;
+  omsg.pose.pose.position.x = 0;
+  omsg.pose.pose.position.y = 10;
+  omsg.pose.pose.orientation.z = 3.14;
   r.mm.setCurrentLocationCallBack(omsg);
-  m = r.move();
+  auto m4 = r.move();
   EXPECT_EQ("in target location 4", r.getStatus());
-  m = r.move();
+  auto m5 = r.move();
   EXPECT_EQ("heading to target location 2", r.getStatus());
 
   /**
    * place robot in location 1
    */
-  omsg.pose.covariance[0] = 0;
-  omsg.pose.covariance[1] = 0;
-  omsg.pose.covariance[5] = -3.14/2;
+  omsg.pose.pose.position.x = 0;
+  omsg.pose.pose.position.y = 0;
+  omsg.pose.pose.orientation.z = -3.14/2;
   r.mm.setCurrentLocationCallBack(omsg);
-  m = r.move();
+  auto m6 = r.move();
   EXPECT_EQ("heading to target location 2", r.getStatus());
 }
 
@@ -249,9 +249,9 @@ TEST(waiterBotTest, moveHeadingToLocation1Test) {
    * place robot in location 2
    */
   nav_msgs::Odometry omsg;
-  omsg.pose.covariance[0] = 10;
-  omsg.pose.covariance[1] = 0;
-  omsg.pose.covariance[5] = 3.14/2;  // with this orientation turn positive
+  omsg.pose.pose.position.x = 10;
+  omsg.pose.pose.position.y = 0;
+  omsg.pose.pose.orientation.z = 3.14/2;  // should turn positive
   r.mm.setCurrentLocationCallBack(omsg);
   auto m = r.move();
   EXPECT_EQ(0, m.linear.x);
@@ -261,14 +261,14 @@ TEST(waiterBotTest, moveHeadingToLocation1Test) {
   EXPECT_EQ(0, m.angular.y);
   EXPECT_EQ(0.2, m.angular.z);
 
-  omsg.pose.covariance[5] = 3*3.14/2;  // with this orientation turn negative
+  omsg.pose.pose.orientation.z = 3*3.14/2;  // should turn negative
   r.mm.setCurrentLocationCallBack(omsg);
-  m = r.move();
+  auto m1 = r.move();
   EXPECT_EQ(-0.2, m.angular.z);
 
-  omsg.pose.covariance[5] = 3.1;  // with this orientation the move straight
+  omsg.pose.pose.orientation.z = 3.1;  // should move straight
   r.mm.setCurrentLocationCallBack(omsg);
-  m = r.move();
+  auto m2 = r.move();
   EXPECT_EQ(0, m.angular.z);
   EXPECT_EQ(0.2, m.linear.x);
 }
@@ -285,9 +285,9 @@ TEST(waiterBotTest, moveHeadingToLocation2Test) {
    * place robot in location 4
    */
   nav_msgs::Odometry omsg;
-  omsg.pose.covariance[0] = 0;
-  omsg.pose.covariance[1] = 10;
-  omsg.pose.covariance[5] = 3.14;  // with this orientation turn positive
+  omsg.pose.pose.position.x = 0;
+  omsg.pose.pose.position.y = 10;
+  omsg.pose.pose.orientation.z = 3.14;  // should turn positive
   r.mm.setCurrentLocationCallBack(omsg);
   auto m = r.move();
   EXPECT_EQ(0, m.linear.x);
@@ -296,20 +296,20 @@ TEST(waiterBotTest, moveHeadingToLocation2Test) {
   EXPECT_EQ(0, m.angular.x);
   EXPECT_EQ(0, m.angular.y);
   EXPECT_EQ(0, m.angular.z);
-  m = r.move();
+  auto m1 = r.move();
   EXPECT_EQ(0, m.linear.x);
   EXPECT_EQ(0.2, m.angular.z);
 
-  omsg.pose.covariance[5] = 2*3.14-0.1;  // with this orientation turn negative
+  omsg.pose.pose.orientation.z = 2*3.14-0.1;  // should turn negative
   r.mm.setCurrentLocationCallBack(omsg);
-  m = r.move();
+  auto m2 = r.move();
   EXPECT_EQ("heading to target location 2", r.getStatus());
   EXPECT_EQ(0, m.linear.x);
   EXPECT_EQ(-0.2, m.angular.z);
 
-  omsg.pose.covariance[5] = 3*3.14/2 + 0.8;  // with orientation move straight
+  omsg.pose.pose.orientation.z = 3*3.14/2 + 0.8;  // should move straight
   r.mm.setCurrentLocationCallBack(omsg);
-  m = r.move();
+  auto m3 = r.move();
   EXPECT_EQ(0, m.angular.z);
   EXPECT_EQ(0.2, m.linear.x);
 }
@@ -326,9 +326,9 @@ TEST(waiterBotTest, moveHeadingToLocation3Test) {
    * place robot in location 2
    */
   nav_msgs::Odometry omsg;
-  omsg.pose.covariance[0] = 10;
-  omsg.pose.covariance[1] = 0;
-  omsg.pose.covariance[5] = 0;  // with this orientation turn positive
+  omsg.pose.pose.position.x = 10;
+  omsg.pose.pose.position.y = 0;
+  omsg.pose.pose.orientation.z = 0;  // should turn positive
   r.mm.setCurrentLocationCallBack(omsg);
   auto m = r.move();
   EXPECT_EQ(0, m.linear.x);
@@ -337,20 +337,20 @@ TEST(waiterBotTest, moveHeadingToLocation3Test) {
   EXPECT_EQ(0, m.angular.x);
   EXPECT_EQ(0, m.angular.y);
   EXPECT_EQ(0, m.angular.z);
-  m = r.move();
+  auto m1 = r.move();
   EXPECT_EQ(0, m.linear.x);
   EXPECT_EQ(0.2, m.angular.z);
 
-  omsg.pose.covariance[5] = 3.14/2+0.1;  // with this orientation turn negative
+  omsg.pose.pose.orientation.z = 3.14/2+0.1;  // should turn negative
   r.mm.setCurrentLocationCallBack(omsg);
-  m = r.move();
+  auto m2 = r.move();
   EXPECT_EQ("heading to target location 3", r.getStatus());
   EXPECT_EQ(0, m.linear.x);
   EXPECT_EQ(-0.2, m.angular.z);
 
-  omsg.pose.covariance[5] = 3.14/2 + 0.04;  // with orientation move straight
+  omsg.pose.pose.orientation.z = 3.14/2 + 0.04;  // should move straight
   r.mm.setCurrentLocationCallBack(omsg);
-  m = r.move();
+  auto m3 = r.move();
   EXPECT_EQ(0, m.angular.z);
   EXPECT_EQ(0.2, m.linear.x);
 }
@@ -367,9 +367,9 @@ TEST(waiterBotTest, moveHeadingToLocation4Test) {
    * place robot in location 3
    */
   nav_msgs::Odometry omsg;
-  omsg.pose.covariance[0] = 10;
-  omsg.pose.covariance[1] = 10;
-  omsg.pose.covariance[5] = 3.14/2;  // with this orientation turn positive
+  omsg.pose.pose.position.x = 10;
+  omsg.pose.pose.position.y = 10;
+  omsg.pose.pose.orientation.z = 3.14/2;  // should turn positive
   r.mm.setCurrentLocationCallBack(omsg);
   auto m = r.move();
   EXPECT_EQ(0, m.linear.x);
@@ -378,20 +378,20 @@ TEST(waiterBotTest, moveHeadingToLocation4Test) {
   EXPECT_EQ(0, m.angular.x);
   EXPECT_EQ(0, m.angular.y);
   EXPECT_EQ(0, m.angular.z);
-  m = r.move();
+  auto m1 = r.move();
   EXPECT_EQ(0, m.linear.x);
   EXPECT_EQ(0.2, m.angular.z);
 
-  omsg.pose.covariance[5] = 3.14+0.1;  // with this orientation turn negative
+  omsg.pose.pose.orientation.z = 3.14+0.1;  // should turn negative
   r.mm.setCurrentLocationCallBack(omsg);
-  m = r.move();
+  auto m2 = r.move();
   EXPECT_EQ("heading to target location 4", r.getStatus());
   EXPECT_EQ(0, m.linear.x);
   EXPECT_EQ(-0.2, m.angular.z);
 
-  omsg.pose.covariance[5] = 3.14 + 0.04;  // with this orientation move straight
+  omsg.pose.pose.orientation.z = 3.14 + 0.04;  // should move straight
   r.mm.setCurrentLocationCallBack(omsg);
-  m = r.move();
+  auto m3 = r.move();
   EXPECT_EQ(0, m.angular.z);
   EXPECT_EQ(0.2, m.linear.x);
 }

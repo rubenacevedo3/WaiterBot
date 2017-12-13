@@ -57,7 +57,7 @@ TEST(distSensorTest, inCollisionTest) {
 //! test the setDistReadingCallBack function
 /**
  * @brief This tests the setDistReadingCallBack function
- * to see if can average the sensor data correctly 
+ * to see if can get the sensor data correctly 
  * It also retests the inCollision() function to make
  * sure it marks that it is in collision
  */

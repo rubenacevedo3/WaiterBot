@@ -75,9 +75,9 @@ TEST(motionModuleTest, inRegionTest) {
 TEST(motionModuleTest, setCurrentLocationCallBackTest) {
   motionModule m;
   nav_msgs::Odometry msg;
-  msg.pose.covariance[0] = 6;
-  msg.pose.covariance[1] = 2;
-  msg.pose.covariance[5] = 1;
+  msg.pose.pose.position.x = 6;
+  msg.pose.pose.position.y = 2;
+  msg.pose.pose.orientation.z = 1;
   m.setCurrentLocationCallBack(msg);
   auto p = m.getCurrentLoc();
   auto v = p.getPos();
