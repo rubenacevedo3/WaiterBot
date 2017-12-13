@@ -28,10 +28,12 @@
  * DEALINGS IN THE SOFTWARE. © 2017 GitHub, Inc.
  */
 
-#include <sensor_msgs/LaserScan.h>
 #include <geometry_msgs/Twist.h>
-#include <std_msgs/String.h>
 #include <ros/ros.h>
+#include "waiterBot.hpp"
+#include "distSensor.hpp"
+#include "motionModule.hpp"
+#include "forceSensor.hpp"
 
 
 /**
@@ -39,7 +41,58 @@
 * The robot moves to its target location, stoping every
 * time there is an obstical, and it retruns to the food/drink
 * pick up location only once it has no more food
+* It publishes geometry_msgs::Twist messages from the 
+* "/mobile_base/commands/velocity" topic
+* It subscribes to the the "/scan", "force", "/odom" topic 
 */
 int main(int argc, char **argv) {
+  ros::init(argc, argv, "waiterBot_node");
+  waiterBot r;
+  ros::NodeHandle n;
+
+  /**
+   * subscribe the distSensor to the /scan topic
+   */ 
+  ros::Subscriber distSensorSub = n.subscribe("/scan", 1000,
+    &distSensor::setDistReadingCallBack, &r.ds);
+
+  /**
+   * subscribe the forceSensor to the force topic
+   */
+  ros::Subscriber forceSensorSub = n.subscribe("force", 100,
+    &forceSensor::setWeightCallBack, &r.fs);
+
+  /**
+   * subscribe the motionModule to the /odom topic
+   */
+  ros::Subscriber motionModuleSub = n.subscribe("/odom", 100,
+    &motionModule::setCurrentLocationCallBack, &r.mm);
+
+  /**
+   * publish the velocity commands to the /mobile_base/commands/velocity topic
+   * the velocity comands are geometry_msgs::Twist message type
+   */
+  ros::Publisher velCommandPub = n.advertise<geometry_msgs::Twist>
+    ("/mobile_base/commands/velocity", 100);
+
+  ros::Rate rate(1.0);
+  ros::Duration delay(10);
+
+  while (ros::ok()) {
+    auto vel_msg = r.move();
+    if (r.getStatus() == "in target location 1" ||
+      r.getStatus() == "in target location 2" ||
+      r.getStatus() == "in target location 3" ||
+      r.getStatus() == "in target location 4") {
+        delay.sleep();
+    }
+    velCommandPub.publish(vel_msg);
+    ROS_INFO("Published Velocity Command");
+    ROS_INFO("linear.x: %f", vel_msg.linear.x);
+    ROS_INFO("angular.z: %f", vel_msg.angular.z);
+    ros::spinOnce();
+    rate.sleep();
+  }
+
   return 0;
 }

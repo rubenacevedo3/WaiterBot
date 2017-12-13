@@ -31,6 +31,7 @@
  */
 
 #include <sensor_msgs/LaserScan.h>
+#include <ros/ros.h>
 #include "distSensor.hpp"
 
 //! Class Constructor
@@ -70,18 +71,23 @@ bool distSensor::inCollision() {
 
 //! set the distance reading function
 /**
- * @brief This function sets the distReading value.
- * This function finds the average value of the LaserScan message and 
- * sets it to be the distReading value
+   * @brief This function sets the distReading value.
+   * This function finds the smallest value of the LaserScan message and 
+   * sets it to be the distReading value. If the value is infitiy it set
+   * the reading distance to be 100
  * @param a const sensor_msgs::LaserScan::ConstPtr reference message type
  * repersenting the values that the distance sensor reads. 
  * @return nothing
  */
 void distSensor::setDistReadingCallBack
   (const sensor_msgs::LaserScan::ConstPtr& scan_msg) {
-  float sum = 0;
+  float min = 100;
   for (auto d : scan_msg->ranges) {
-    sum = sum + d;
+    if (min > d) {
+      min = d;
+    }
   }
-  distReading = sum/scan_msg->ranges.size();
+  distReading = min;
+  ROS_INFO("Received Laser Scan Message");
+  ROS_INFO("distReading: %f", distReading);
 }

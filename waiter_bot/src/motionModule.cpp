@@ -32,6 +32,7 @@
 
 #include <nav_msgs/Odometry.h>
 #include <math.h>
+#include <ros/ros.h>
 #include "position.hpp"
 #include "motionModule.hpp"
 
@@ -83,8 +84,12 @@ position motionModule::getCurrentLoc() {
  */
 void motionModule::setCurrentLocationCallBack
   (const nav_msgs::Odometry& odo_msg) {
-  auto x = odo_msg.pose.covariance[0];
-  auto y = odo_msg.pose.covariance[1];
-  auto theta = odo_msg.pose.covariance[5];
+  auto x = odo_msg.pose.pose.position.x;
+  auto y = odo_msg.pose.pose.position.y;
+  auto theta = odo_msg.pose.pose.orientation.z;
   currentLoc.setPosition(x, y, theta);
+  ROS_INFO("Received Odometry Message");
+  ROS_INFO("xPos: %f", x);
+  ROS_INFO("yPos: %f", x);
+  ROS_INFO("theta: %f", x);
 }

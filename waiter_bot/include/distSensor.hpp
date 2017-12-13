@@ -71,8 +71,9 @@ class distSensor {
   //! set the distance reading function
   /**
    * @brief This function sets the distReading value.
-   * This function finds the average value of the LaserScan message and 
-   * sets it to be the distReading value
+   * This function finds the smallest value of the LaserScan message and 
+   * sets it to be the distReading value. If the value is infitiy it set
+   * the reading distance to be 100
    * @param a const sensor_msgs::LaserScan::ConstPtr reference message type
    * repersenting the values that the distance sensor reads. 
    * @return nothing

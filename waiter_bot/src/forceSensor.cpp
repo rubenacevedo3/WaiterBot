@@ -31,6 +31,7 @@
  */
 
 #include <std_msgs/Float32.h>
+#include <ros/ros.h>
 #include "forceSensor.hpp"
 
 //! Class Constructor
@@ -62,5 +63,7 @@ float forceSensor::getWeight() {
  */
 void forceSensor::setWeightCallBack(const std_msgs::Float32& force_msg) {
   weight = force_msg.data;
+  ROS_INFO("Received Force Message");
+  ROS_INFO("food weight: %f", weight);
 }
 
