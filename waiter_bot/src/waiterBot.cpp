@@ -115,21 +115,25 @@ float waiterBot::getAngleDiff(position tl) {
     return 0;
   } else if (x > 0) {
       if (y == 0) {
-        heading = 0;
-      } else {
-          heading = atan(y/x);
-        }
+        heading = 0;  // check point (1,0)
+      } else if (y > 0) {
+          heading = atan(y/x);  // check points in top right quad
+        } else {
+            heading = 3*3.14/2-atan(y/x);  // check points in bottom right quad
+          }
     } else if (x < 0) {
         if (y == 0) {
-          heading = 3.14;
-        } else {
-            heading = 3.14 + atan(y/x);
-          }
+          heading = 3.14;  // check point (-1,0)
+        } else if (y > 0) {
+            heading = 3.14/2 - atan(y/x);  // check points in top left quad
+          } else {
+              heading = 3.14 + atan(y/x);  // check points in bottom left quad
+            }
       } else {
           if (y > 0) {
-            heading = 3.14/2;
+            heading = 3.14/2;  // check point (0,1)
           } else {
-              heading = -3.14/2;
+              heading = 3*3.14/2;  // check point (0,-1)
             }
         }
   /**
@@ -175,8 +179,9 @@ geometry_msgs::Twist waiterBot::move() {
    * Check to see if the robot is in location 1
    */
   if (mm.inRegion(targetLocs[0])) {
-    if (status != "in target location 1") {
-      status = "in target location 1";
+    if (status != "in target location 1"
+      && status != "heading to target location 2") {
+        status = "in target location 1";
     } else {
         status = "heading to target location 2";
       }
@@ -185,34 +190,40 @@ geometry_msgs::Twist waiterBot::move() {
   /**
    * Check to see if the robot is in location 2
    */
-  if (mm.inRegion(targetLocs[1])) {
-    if (status != "in target location 2") {
-      status = "in target location 2";
-    } else {
-        status = "heading to target location 3";
-      }
+  if (mm.inRegion(targetLocs[1])
+    && status != "heading to target location 1") {
+      if (status != "in target location 2"
+        && status != "heading to target location 3") {
+          status = "in target location 2";
+        } else {
+            status = "heading to target location 3";
+          }
   }
 
   /**
    * Check to see if the robot is in location 3
    */  
-  if (mm.inRegion(targetLocs[2])) {
-    if (status != "in target location 3") {
-      status = "in target location 3";
-    } else {
-        status = "heading to target location 4";
-      }
+  if (mm.inRegion(targetLocs[2])
+    && status != "heading to target location 1") {
+      if (status != "in target location 3"
+        && status != "heading to target location 4") {
+          status = "in target location 3";
+        } else {
+            status = "heading to target location 4";
+          }
   }
 
   /**
    * Check to see if the robot is in location 4
    */
-  if (mm.inRegion(targetLocs[3])) {
-    if (status != "in target location 4") {
-      status = "in target location 4";
-    } else {
-        status = "heading to target location 2";
-      }
+  if (mm.inRegion(targetLocs[3])
+    && status != "heading to target location 1") {
+      if (status != "in target location 4"
+        && status != "heading to target location 2") {
+          status = "in target location 4";
+        } else {
+            status = "heading to target location 2";
+          }
   }
 
   /**
@@ -230,7 +241,7 @@ geometry_msgs::Twist waiterBot::move() {
         return vel;
       } else {
          vel.linear.x = 0;
-         vel.angular.z = - 0.2;
+         vel.angular.z = -0.2;
          return vel;
         }
   }
@@ -296,7 +307,7 @@ geometry_msgs::Twist waiterBot::move() {
   }
 
   /**
-   * if status is incorrect robot does nothing
+   * if status is incorrect or in a region robot does nothing
    */
   vel.linear.x = 0;
   vel.angular.z = 0;

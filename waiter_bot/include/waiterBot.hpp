@@ -46,7 +46,7 @@
  * @brief This class is the complete robot
  */
 class waiterBot {
-  //! Public Methods
+  //! Public Methods and Attributes
  public:
   //! Class Constructor
   /**
@@ -109,8 +109,6 @@ class waiterBot {
    */
   geometry_msgs::Twist move();
 
-  //! Private Attributes
- private:
   //! the waiterBot's distance Sensor
   /**
    * @brief this distSensor repersents the robot's distance sensor 
@@ -129,6 +127,8 @@ class waiterBot {
    */
   forceSensor fs;
 
+  //! Private Attributes
+ private:
   //! the waiterBot's target locations
   /**
    * @brief this position vector is a list of all the target locations

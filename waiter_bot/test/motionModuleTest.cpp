@@ -31,31 +31,6 @@
 #include <nav_msgs/Odometry.h>
 #include "motionModule.hpp"
 #include "position.hpp"
-// #include "ros/ros.h"
-
-//! test the motionModule constructor
-/**
- * @brief This tests makes sure that the constructor works
- * It should set the stopB to true.
- * It also test the didStop() function at the same time
- */
-TEST(motionModuleTest, constructorTest) {
-  motionModule m;
-  EXPECT_TRUE(m.didStop());
-}
-
-//! test the stop function
-/**
- * @brief This tests makes sure that it sets stopB correctly
- * It also tests the didStop() function at the same time
- */
-TEST(motionModuleTest, stopTest) {
-  motionModule m;
-  m.stop(false);
-  EXPECT_FALSE(m.didStop());
-  m.stop(true);
-  EXPECT_TRUE(m.didStop());
-}
 
 //! test the getCurrentLoc function
 /**

@@ -221,11 +221,13 @@ if(CATKIN_ENABLE_TESTING)
   test/positionTest.cpp
   test/distSensorTest.cpp
   test/motionModuleTest.cpp
+  test/waiterBotTest.cpp
   src/food.cpp
   src/forceSensor.cpp
   src/position.cpp
   src/distSensor.cpp
   src/motionModule.cpp
+  src/waiterBot.cpp
   )
   target_link_libraries(
   mainTest
