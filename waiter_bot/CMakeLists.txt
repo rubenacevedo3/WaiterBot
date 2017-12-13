@@ -227,13 +227,13 @@ if(CATKIN_ENABLE_TESTING)
   mainTest
   test/mainTest.launch
   test/mainTest.cpp
-  #test/foodTest.cpp
+  test/foodStubTest.cpp
   test/forceSensorTest.cpp
   test/positionTest.cpp
   test/distSensorTest.cpp
   test/motionModuleTest.cpp
   test/waiterBotTest.cpp
-  #src/food.cpp
+  src/foodStub.cpp
   src/forceSensor.cpp
   src/position.cpp
   src/distSensor.cpp

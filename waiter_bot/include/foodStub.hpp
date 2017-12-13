@@ -41,7 +41,7 @@
  * force sensor can read 
  */
 class foodStub {
-  //! Public Methods
+  //! Public Methods and Atrributes
  public:
   //! Class Constructor
   /**
@@ -84,6 +84,14 @@ class foodStub {
    */
   std_msgs::Float32 pubFood();
 
+  //! waiterBot
+  /**
+   * @brief this waiterBot repersents the robot
+   * It is used to keep track of the robots position
+   * so the food stub know how much food it should output
+   */
+  waiterBot r;
+
   //! Private Attributes
  private:
   //! food weight
@@ -92,13 +100,6 @@ class foodStub {
    * on the robots tray
    */
   float foodWeight;
-  //! waiterBot
-  /**
-   * @brief this waiterBot repersents the robot
-   * It is used to keep track of the robots position
-   * so the food stub know how much food it should output
-   */
-  waiterBot r;
 };
 
 #endif  // CATKIN_WS_SRC_WAITERBOT_WAITER_BOT_INCLUDE_FOODSTUB_HPP_

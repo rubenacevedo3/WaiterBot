@@ -1,7 +1,7 @@
 /**
  * @author Ruben Acevedo
- * @file foodTest.cpp
- * @brief This is the ".cpp" file for testing the food class
+ * @file foodStubTest.cpp
+ * @brief This is the ".cpp" file for testing the foodStub class
  * @copyright [2017] Ruben Acevedo
  */
 /**
@@ -28,15 +28,16 @@
  */
 
 #include <gtest/gtest.h>
-#include "food.hpp"
+#include <nav_msgs/Odometry.h>
+#include "foodStub.hpp"
 
-//! test the food constructor
+//! test the food stub constructor
 /**
  * @brief This tests makes sure that the constructor sets the foodWeight=0
  * It also test the get food weight at the same time.
  */
-TEST(foodTest, constructorTest) {
-  food f;
+TEST(foodStubTest, constructorTest) {
+  foodStub f;
   EXPECT_EQ(0, f.getFoodWeight());
 }
 
@@ -45,8 +46,8 @@ TEST(foodTest, constructorTest) {
  * @brief This tests makes sure when the addFood function is called it sets it to 
  * 25 Newtons
  */
-TEST(foodTest, addFoodTest) {
-  food f;
+TEST(foodStubTest, addFoodTest) {
+  foodStub f;
   f.addFood();
   EXPECT_EQ(25, f.getFoodWeight());
   f.addFood();
@@ -58,8 +59,8 @@ TEST(foodTest, addFoodTest) {
  * @brief This tests makes sure that when removeFood is called the weight reduces. 
  * It also checks that the foodweight can never be negative
  */
-TEST(foodTest, removeFoodTest) {
-  food f;
+TEST(foodStubTest, removeFoodTest) {
+  foodStub f;
   f.removeFood();
   EXPECT_EQ(0, f.getFoodWeight());
   f.addFood();
@@ -73,5 +74,30 @@ TEST(foodTest, removeFoodTest) {
   EXPECT_EQ(5, f.getFoodWeight());
   f.removeFood();
   EXPECT_EQ(0, f.getFoodWeight());
+}
+
+//! test the pubFood function
+/**
+ * @brief This tests makes sure that it publishes food correctly
+ * If the robots is in location 2,3,4 or if it stop the function shoud
+ * read 1/5 of the original food value lower each time. If the robot
+ * is in location 1 it should publish 25N
+ */
+TEST(foodStubTest, pubFoodTest) {
+  foodStub f;
+  auto d = f.pubFood();
+  EXPECT_EQ(25, d.data);
+
+  /**
+   * Set robot location to location 3
+   */
+  nav_msgs::Odometry omsg;
+  omsg.pose.covariance[0] = 10;
+  omsg.pose.covariance[1] = 10;
+  omsg.pose.covariance[5] = 3.14/2;
+  f.r.mm.setCurrentLocationCallBack(omsg);
+  auto m = f.r.move();
+  d = f.pubFood();
+  EXPECT_EQ(20, d.data);
 }
 
