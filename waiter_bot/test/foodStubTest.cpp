@@ -44,14 +44,14 @@ TEST(foodStubTest, constructorTest) {
 //! test the addFood function
 /**
  * @brief This tests makes sure when the addFood function is called it sets it to 
- * 25 Newtons
+ * 9 Newtons
  */
 TEST(foodStubTest, addFoodTest) {
   foodStub f;
   f.addFood();
-  EXPECT_EQ(25, f.getFoodWeight());
+  EXPECT_EQ(9, f.getFoodWeight());
   f.addFood();
-  EXPECT_EQ(25, f.getFoodWeight());
+  EXPECT_EQ(9, f.getFoodWeight());
 }
 
 //! test the removeFood function
@@ -65,38 +65,6 @@ TEST(foodStubTest, removeFoodTest) {
   EXPECT_EQ(0, f.getFoodWeight());
   f.addFood();
   f.removeFood();
-  EXPECT_EQ(20, f.getFoodWeight());
-  f.removeFood();
-  EXPECT_EQ(15, f.getFoodWeight());
-  f.removeFood();
-  EXPECT_EQ(10, f.getFoodWeight());
-  f.removeFood();
-  EXPECT_EQ(5, f.getFoodWeight());
-  f.removeFood();
-  EXPECT_EQ(0, f.getFoodWeight());
-}
-
-//! test the pubFood function
-/**
- * @brief This tests makes sure that it publishes food correctly
- * If the robots is in location 2,3,4 or if it stop the function shoud
- * read 1/5 of the original food value lower each time. If the robot
- * is in location 1 it should publish 25N
- */
-TEST(foodStubTest, pubFoodTest) {
-  foodStub f;
-  auto d = f.pubFood();
-  EXPECT_EQ(25, d.data);
-
-  /**
-   * Set robot location to location 3
-   */
-  nav_msgs::Odometry omsg;
-  omsg.pose.pose.position.x = 2;
-  omsg.pose.pose.position.y = 2;
-  f.r.mm.setCurrentLocationCallBack(omsg);
-  auto m = f.r.move();
-  d = f.pubFood();
-  EXPECT_EQ(20, d.data);
+  EXPECT_FLOAT_EQ(6.0029998, f.getFoodWeight());
 }
 
