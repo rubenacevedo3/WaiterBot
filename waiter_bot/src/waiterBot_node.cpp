@@ -30,8 +30,8 @@
 
 #include <ros/ros.h>
 #include <geometry_msgs/Twist.h>
+#include <std_msgs/String.h>
 #include <sstream>
-#include "std_msgs/String.h"
 #include "waiterBot.hpp"
 #include "distSensor.hpp"
 #include "motionModule.hpp"
@@ -79,16 +79,9 @@ int main(int argc, char **argv) {
 
   ros::Rate rate(5);
   ros::Duration delay(10);
-  int c = 0;
 
   while (ros::ok()) {
     auto vel_msg = r.move();
-    if (r.getStatus() == "in target location 1" ||
-      r.getStatus() == "in target location 2" ||
-      r.getStatus() == "in target location 3" ||
-      r.getStatus() == "in target location 4") {
-        delay.sleep();
-    }
     velCommandPub.publish(vel_msg);
     std_msgs::String msg;
     std::stringstream ss;
@@ -100,7 +93,6 @@ int main(int argc, char **argv) {
     ROS_DEBUG("angular.z: %f", vel_msg.angular.z);
     ros::spinOnce();
     rate.sleep();
-    c++;
   }
 
   return 0;

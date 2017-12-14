@@ -28,10 +28,11 @@
  * DEALINGS IN THE SOFTWARE. © 2017 GitHub, Inc.
  */
 
-// #include <sensor_msgs/LaserScan.h>
-// #include <geometry_msgs/Twist.h>
-// #include <std_msgs/String.h>
+#include <std_msgs/Float32.h>
 #include <ros/ros.h>
+#include "distSensor.hpp"
+#include "motionModule.hpp"
+#include "foodStub.hpp"
 
 
 /**
@@ -40,7 +41,45 @@
 * of food. Everytime it reaches a target location it
 * reduces the food by 1/5 the original value. Everytime the 
 * robot is stopped it also reduces the food by 1/5 the original value.
+* This node publishes std_msgs::Float32 messages to the force topic.
+* This node subscribes to the /odom topic
 */
 int main(int argc, char **argv) {
+  ros::init(argc, argv, "foodStub_node");
+  foodStub f;
+  ros::NodeHandle n;
+
+  /**
+   * subscribe the motionModule to the /odom topic
+   */
+  ros::Subscriber motionModuleSub = n.subscribe("/odom", 10,
+    &motionModule::setCurrentLocationCallBack, &f.r.mm);
+
+  /**
+   * subscribe the distSensor to the /scan topic
+   */ 
+  ros::Subscriber distSensorSub = n.subscribe("/scan", 100,
+    &distSensor::setDistReadingCallBack, &f.r.ds);
+
+  /**
+   * publish the the food weight to the force topic
+   * the weights are gstd_msgs::Float32 message type
+   */
+  ros::Publisher foodPub = n.advertise<std_msgs::Float32>
+    ("force", 100);
+
+  ros::Rate rate(1);
+
+  while (ros::ok()) {
+    auto food_msg = f.pubFood();
+    auto m = f.r.move();
+    foodPub.publish(food_msg);
+    ROS_DEBUG("Published Food Weight");
+    ROS_INFO("Food Weight: %f", food_msg.data);
+    ros::spinOnce();
+    rate.sleep();
+  }
+
+
   return 0;
 }

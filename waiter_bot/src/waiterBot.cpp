@@ -174,9 +174,13 @@ geometry_msgs::Twist waiterBot::move() {
   /**
    * Check to see if the robot has food
    */
+  ROS_DEBUG("getWeight: %f", fs.getWeight());
   if (fs.getWeight() == 0) {
     status = "heading to target location 1";
+    ROS_INFO("GO pick up food!!!!!");
   }
+
+  ros::Duration delay(10);
 
   /**
    * Check to see if the robot is in location 1
@@ -186,6 +190,7 @@ geometry_msgs::Twist waiterBot::move() {
       && status != "heading to target location 2") {
         status = "in target location 1";
         ROS_INFO("in target location 1");
+        delay.sleep();
         right_direction = false;
     } else {
         status = "heading to target location 2";
@@ -201,6 +206,7 @@ geometry_msgs::Twist waiterBot::move() {
         && status != "heading to target location 3") {
           status = "in target location 2";
           ROS_INFO("in target location 2");
+          delay.sleep();
           right_direction = false;
         } else {
             status = "heading to target location 3";
@@ -216,6 +222,7 @@ geometry_msgs::Twist waiterBot::move() {
         && status != "heading to target location 4") {
           status = "in target location 3";
           ROS_INFO("in target location 3");
+          delay.sleep();
           right_direction = false;
         } else {
             status = "heading to target location 4";
@@ -231,6 +238,7 @@ geometry_msgs::Twist waiterBot::move() {
         && status != "heading to target location 2") {
           status = "in target location 4";
           ROS_INFO("in target location 4");
+          delay.sleep();
           right_direction = false;
         } else {
             status = "heading to target location 2";

@@ -47,6 +47,7 @@ class foodStub {
   /**
    * @brief This code constructs the class.
    * It initializes the food weight to be 0
+   * Sets the removedFoodWhenStoped false
    * @param nothing
    * @return nothing
    */
@@ -100,6 +101,13 @@ class foodStub {
    * on the robots tray
    */
   float foodWeight;
+
+  //! removedFoodWhenStoped
+  /**
+   * @brief this bool states if food was already removed at a stop
+   * If the robot is stopped food should only be removed once
+   */
+  bool removedFoodWhenStoped;
 };
 
 #endif  // CATKIN_WS_SRC_WAITERBOT_WAITER_BOT_INCLUDE_FOODSTUB_HPP_

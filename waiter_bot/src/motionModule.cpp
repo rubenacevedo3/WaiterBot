@@ -102,7 +102,7 @@ void motionModule::setCurrentLocationCallBack
   }
 
   currentLoc.setPosition(x, y, theta);
-  ROS_INFO("Received Odometry Message");
+  ROS_DEBUG("Received Odometry Message");
   ROS_DEBUG("xPos: %f", x);
   ROS_DEBUG("yPos: %f", y);
   ROS_DEBUG("theta: %f", theta);

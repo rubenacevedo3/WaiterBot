@@ -89,6 +89,6 @@ void distSensor::setDistReadingCallBack
     }
   }
   distReading = min;
-  ROS_INFO("Received Laser Scan Message");
+  ROS_DEBUG("Received Laser Scan Message");
   ROS_DEBUG("distReading: %f", distReading);
 }

@@ -31,16 +31,18 @@
  */
 
 #include <std_msgs/Float32.h>
+#include <ros/ros.h>
 #include "foodStub.hpp"
 
 //! Class Constructor
 /**
  * @brief This code constructs the class.
  * It initializes the food weight to be 0
+ * Sets the removedFoodWhenStoped false
  * @param nothing
  * @return nothing
  */
-foodStub::foodStub(): foodWeight(0) {
+foodStub::foodStub(): foodWeight(0), removedFoodWhenStoped(false) {
 }
 
 //! get food weight function
@@ -55,26 +57,26 @@ float foodStub::getFoodWeight() {
 
 //! increase food weight function
 /**
- * @brief This function increased the food weight to 25 N
+ * @brief This function increased the food weight to 9 N
  * @param nothing
  * @return nothing
  */
 void foodStub::addFood() {
-  foodWeight = 25;
+  foodWeight = 9;
 }
 
 //! decrease food weight function
 /**
- * @brief This function decreases the food weight by 5N
+ * @brief This function decreases the food weight by 3
  * @param nothing
  * @return nothing
  */
 void foodStub::removeFood() {
-  if (foodWeight - 0.2*25 < 0) {
+  if (foodWeight - 0.2*25 < 0.5) {
     foodWeight = 0;
     return;
   }
-  foodWeight = foodWeight - 0.2*25;
+  foodWeight = foodWeight - 0.333*9;
 }
 
 //! publish food weight function
@@ -87,10 +89,17 @@ std_msgs::Float32 foodStub::pubFood() {
   if (r.getStatus() == "in target location 1") {
     addFood();
   }
+  if (r.didStop() == true && removedFoodWhenStoped == false) {
+    removeFood();
+    removedFoodWhenStoped = true;
+  }
+  if (r.didStop() == false) {
+    removedFoodWhenStoped = false;
+  }
+
   if (r.getStatus() == "in target location 2" ||
     r.getStatus() == "in target location 3" ||
-    r.getStatus() == "in target location 4" ||
-    r.didStop()) {
+    r.getStatus() == "in target location 4") {
       removeFood();
   }
   std_msgs::Float32 s;
