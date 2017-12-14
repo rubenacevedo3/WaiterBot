@@ -52,9 +52,10 @@ class waiterBot {
   /**
    * @brief This code constructs the class.
    * It sets the target locations to be 
-   * (0,0) (10,0) (10,10) (10,0)
+   * (0,0) (2,0) (2,2) (2,0)
    * It sets the status to "in target location 1"
    * Sets the stopB to false;
+   * Sets the right_direction to false;
    * @param nothing
    * @return nothing
    */
@@ -160,6 +161,12 @@ class waiterBot {
    * @brief this boolean states whether or not the robot is suppose to stop 
    */
   bool stopB;
+
+  //! right_direction boolean
+  /**
+   * @brief this boolean states if the robot is facing the right direction 
+   */
+  bool right_direction;
 };
 
 #endif  // CATKIN_WS_SRC_WAITERBOT_WAITER_BOT_INCLUDE_WAITERBOT_HPP_

@@ -53,7 +53,7 @@ class motionModule {
   //! checks to see if the robot is in a region
   /**
    * @brief This function checks if the robot is in a region
-   * The robot should be with in 0.125 m of the pos for it to
+   * The robot should be with in 0.2 m of the pos for it to
    * return that it is within the region
    * @param a position reference repersenting the target region
    * @return bool repesenting whether the robot is in the region or not
@@ -77,6 +77,15 @@ class motionModule {
    * @return nothing
    */
   void setCurrentLocationCallBack(const nav_msgs::Odometry& odo_msg);
+
+  //! sets the current location's theta of the robot
+  /**
+   * @brief This function sets the current location theta of the robot.
+   * this function is purely to make testing easier
+   * @param a const float repesenting the theta
+   * @return nothing
+   */
+  void setThetaValueForTests(const float& t);
 
   //! Private Attributes
  private:

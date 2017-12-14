@@ -47,13 +47,14 @@ distSensor::distSensor(): distReading(1000000) {
 //! checks for collision function
 /**
  * @brief This function checks for collision
- * If the distReading is under 0.1 meters then it will mark
+ * If the distReading is under 0.75 meters then it will mark
  * that there is something in front of it
  * @param nothing
  * @return bool repesenting whether it senses a collision or not
  */
 bool distSensor::inCollision() {
-  if (distReading < 0.1) {
+  if (distReading < 0.75) {
+    ros::Duration(3).sleep();
     return true;
   }
   return false;
@@ -89,5 +90,5 @@ void distSensor::setDistReadingCallBack
   }
   distReading = min;
   ROS_INFO("Received Laser Scan Message");
-  ROS_INFO("distReading: %f", distReading);
+  ROS_DEBUG("distReading: %f", distReading);
 }

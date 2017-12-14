@@ -28,8 +28,10 @@
  * DEALINGS IN THE SOFTWARE. © 2017 GitHub, Inc.
  */
 
-#include <geometry_msgs/Twist.h>
 #include <ros/ros.h>
+#include <geometry_msgs/Twist.h>
+#include <sstream>
+#include "std_msgs/String.h"
 #include "waiterBot.hpp"
 #include "distSensor.hpp"
 #include "motionModule.hpp"
@@ -53,7 +55,7 @@ int main(int argc, char **argv) {
   /**
    * subscribe the distSensor to the /scan topic
    */ 
-  ros::Subscriber distSensorSub = n.subscribe("/scan", 1000,
+  ros::Subscriber distSensorSub = n.subscribe("/scan", 100,
     &distSensor::setDistReadingCallBack, &r.ds);
 
   /**
@@ -75,8 +77,9 @@ int main(int argc, char **argv) {
   ros::Publisher velCommandPub = n.advertise<geometry_msgs::Twist>
     ("/mobile_base/commands/velocity", 100);
 
-  ros::Rate rate(1.0);
+  ros::Rate rate(5);
   ros::Duration delay(10);
+  int c = 0;
 
   while (ros::ok()) {
     auto vel_msg = r.move();
@@ -87,11 +90,17 @@ int main(int argc, char **argv) {
         delay.sleep();
     }
     velCommandPub.publish(vel_msg);
+    std_msgs::String msg;
+    std::stringstream ss;
+    ss << r.getStatus();
+    msg.data = ss.str();
     ROS_INFO("Published Velocity Command");
-    ROS_INFO("linear.x: %f", vel_msg.linear.x);
-    ROS_INFO("angular.z: %f", vel_msg.angular.z);
+    ROS_DEBUG("robot status: %s", msg.data.c_str());
+    ROS_DEBUG("linear.x: %f", vel_msg.linear.x);
+    ROS_DEBUG("angular.z: %f", vel_msg.angular.z);
     ros::spinOnce();
     rate.sleep();
+    c++;
   }
 
   return 0;

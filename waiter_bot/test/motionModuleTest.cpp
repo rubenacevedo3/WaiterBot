@@ -77,8 +77,29 @@ TEST(motionModuleTest, setCurrentLocationCallBackTest) {
   nav_msgs::Odometry msg;
   msg.pose.pose.position.x = 6;
   msg.pose.pose.position.y = 2;
-  msg.pose.pose.orientation.z = 1;
   m.setCurrentLocationCallBack(msg);
+  m.setThetaValueForTests(1);
+  auto p = m.getCurrentLoc();
+  auto v = p.getPos();
+  EXPECT_EQ(6, v[0]);
+  EXPECT_EQ(2, v[1]);
+  EXPECT_EQ(1, v[2]);
+}
+
+//! test the set current location function
+/**
+ * @brief This tests the setCurrentLocationCallBack
+ * it should set currentLoc to what ever the 
+ * nav_msgs::Odometry message is
+ * with in a 0.125 m distance from the input position
+ */
+TEST(motionModuleTest, setThetaValueForTestsTest) {
+  motionModule m;
+  nav_msgs::Odometry msg;
+  msg.pose.pose.position.x = 6;
+  msg.pose.pose.position.y = 2;
+  m.setCurrentLocationCallBack(msg);
+  m.setThetaValueForTests(1);
   auto p = m.getCurrentLoc();
   auto v = p.getPos();
   EXPECT_EQ(6, v[0]);

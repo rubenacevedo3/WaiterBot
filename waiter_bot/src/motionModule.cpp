@@ -31,6 +31,7 @@
  */
 
 #include <nav_msgs/Odometry.h>
+#include <tf/transform_broadcaster.h>
 #include <math.h>
 #include <ros/ros.h>
 #include "position.hpp"
@@ -49,7 +50,7 @@ motionModule::motionModule() {
 //! checks to see if the robot is in a region
 /**
  * @brief This function checks if the robot is in a region
- * The robot should be with in 0.125 m of the pos for it to
+ * The robot should be with in 0.2 m of the pos for it to
  * return that it is within the region
  * @param a position reference repersenting the target region
  * @return bool repesenting whether the robot is in the region or not
@@ -58,7 +59,7 @@ bool motionModule::inRegion(position pos) {
   auto p = pos.getPos();
   auto cl = currentLoc.getPos();
   auto d = pow((pow((p[0] - cl[0]), 2) + pow((p[1] - cl[1]), 2)), 0.5);
-  if (d <= 0.125) {
+  if (d <= 0.2) {
     return true;
   }
   return false;
@@ -86,10 +87,37 @@ void motionModule::setCurrentLocationCallBack
   (const nav_msgs::Odometry& odo_msg) {
   auto x = odo_msg.pose.pose.position.x;
   auto y = odo_msg.pose.pose.position.y;
-  auto theta = odo_msg.pose.pose.orientation.z;
+  auto q = odo_msg.pose.pose.orientation;
+  float theta = 0;
+  auto yaw = tf::getYaw(q);
+  if (yaw < 0) {
+    auto dif = 3.14 + yaw;
+    theta = 3.14 + dif;
+  } else {
+      theta = yaw;
+  }
+
+  if (theta >= 3.14*2) {
+    theta = 3.14 - theta;
+  }
+
   currentLoc.setPosition(x, y, theta);
   ROS_INFO("Received Odometry Message");
-  ROS_INFO("xPos: %f", x);
-  ROS_INFO("yPos: %f", x);
-  ROS_INFO("theta: %f", x);
+  ROS_DEBUG("xPos: %f", x);
+  ROS_DEBUG("yPos: %f", y);
+  ROS_DEBUG("theta: %f", theta);
+}
+
+//! sets the current location's theta of the robot
+/**
+ * @brief This function sets the current location theta of the robot.
+ * this function is purely to make testing easier
+ * @param a const float repesenting the theta
+ * @return nothing
+ */
+void motionModule::setThetaValueForTests(const float& t) {
+  auto v = currentLoc.getPos();
+  auto x = v[0];
+  auto y = v[1];
+  currentLoc.setPosition(x, y, t);
 }

@@ -31,6 +31,7 @@
  */
 
 #include "waiterBot.hpp"
+#include <ros/ros.h>
 #include <math.h>
 #include <geometry_msgs/Twist.h>
 #include <string>
@@ -45,22 +46,24 @@
 /**
  * @brief This code constructs the class.
  * It sets the target locations to be 
- * (0,0) (10,0) (10,10) (10,0)
+ * (0,0) (2,0) (2,2) (2,0)
  * It sets the status to "in target location 1"
  * Sets the stopB to false;
+ * Sets the right_direction to false;
  * @param nothing
  * @return nothing
  */
-waiterBot::waiterBot(): status("in target location 1"), stopB(false) {
-  position p;
-  p.setPosition(0, 0, 0);
-  targetLocs.push_back(p);
-  p.setPosition(10, 0, 0);
-  targetLocs.push_back(p);
-  p.setPosition(10, 10, 0);
-  targetLocs.push_back(p);
-  p.setPosition(0, 10, 0);
-  targetLocs.push_back(p);
+waiterBot::waiterBot(): status("in target location 1"),
+  stopB(false), right_direction(false) {
+    position p;
+    p.setPosition(0, 0, 0);
+    targetLocs.push_back(p);
+    p.setPosition(2, 0, 0);
+    targetLocs.push_back(p);
+    p.setPosition(2, 2, 0);
+    targetLocs.push_back(p);
+    p.setPosition(0, 2, 0);
+    targetLocs.push_back(p);
 }
 
 //! return the robot's status function
@@ -125,7 +128,7 @@ float waiterBot::getAngleDiff(position tl) {
         if (y == 0) {
           heading = 3.14;  // check point (-1,0)
         } else if (y > 0) {
-            heading = 3.14/2 - atan(y/x);  // check points in top left quad
+            heading = 3.14 - atan(y/x);  // check points in top left quad
           } else {
               heading = 3.14 + atan(y/x);  // check points in bottom left quad
             }
@@ -182,6 +185,8 @@ geometry_msgs::Twist waiterBot::move() {
     if (status != "in target location 1"
       && status != "heading to target location 2") {
         status = "in target location 1";
+        ROS_INFO("in target location 1");
+        right_direction = false;
     } else {
         status = "heading to target location 2";
       }
@@ -195,6 +200,8 @@ geometry_msgs::Twist waiterBot::move() {
       if (status != "in target location 2"
         && status != "heading to target location 3") {
           status = "in target location 2";
+          ROS_INFO("in target location 2");
+          right_direction = false;
         } else {
             status = "heading to target location 3";
           }
@@ -208,6 +215,8 @@ geometry_msgs::Twist waiterBot::move() {
       if (status != "in target location 3"
         && status != "heading to target location 4") {
           status = "in target location 3";
+          ROS_INFO("in target location 3");
+          right_direction = false;
         } else {
             status = "heading to target location 4";
           }
@@ -221,6 +230,8 @@ geometry_msgs::Twist waiterBot::move() {
       if (status != "in target location 4"
         && status != "heading to target location 2") {
           status = "in target location 4";
+          ROS_INFO("in target location 4");
+          right_direction = false;
         } else {
             status = "heading to target location 2";
           }
@@ -230,19 +241,19 @@ geometry_msgs::Twist waiterBot::move() {
    * Checks status for "heading to target location 1
    */
   if (status == "heading to target location 1") {
-    if (getAngleDiff(targetLocs[0]) > -0.05 &&
-      getAngleDiff(targetLocs[0]) < 0.05 ) {
+    if (getAngleDiff(targetLocs[0]) > -0.025 &&
+      getAngleDiff(targetLocs[0]) < 0.025 ) {
+        right_direction = true;
+        ros::Duration(3).sleep();
+      }
+      if (right_direction) {
         vel.linear.x = 0.2;
         vel.angular.z = 0;
         return vel;
-    } else if (getAngleDiff(targetLocs[0]) > 0) {
-        vel.linear.x = 0;
-        vel.angular.z = 0.2;
-        return vel;
       } else {
-         vel.linear.x = 0;
-         vel.angular.z = -0.2;
-         return vel;
+          vel.linear.x = 0;
+          vel.angular.z = 0.05;
+          return vel;
         }
   }
 
@@ -250,19 +261,19 @@ geometry_msgs::Twist waiterBot::move() {
    * Checks status for "heading to target location 2
    */
   if (status == "heading to target location 2") {
-    if (getAngleDiff(targetLocs[1]) > -0.05 &&
-      getAngleDiff(targetLocs[1]) < 0.05 ) {
+    if (getAngleDiff(targetLocs[1]) > -0.025 &&
+      getAngleDiff(targetLocs[1]) < 0.025 ) {
+        right_direction = true;
+        ros::Duration(3).sleep();
+      }
+      if (right_direction) {
         vel.linear.x = 0.2;
         vel.angular.z = 0;
         return vel;
-    } else if (getAngleDiff(targetLocs[1]) > 0) {
-        vel.linear.x = 0;
-        vel.angular.z = 0.2;
-        return vel;
       } else {
-         vel.linear.x = 0;
-         vel.angular.z = - 0.2;
-         return vel;
+          vel.linear.x = 0;
+          vel.angular.z = 0.05;
+          return vel;
         }
   }
 
@@ -270,19 +281,19 @@ geometry_msgs::Twist waiterBot::move() {
    * Checks status for "heading to target location 3
    */
   if (status == "heading to target location 3") {
-    if (getAngleDiff(targetLocs[2]) > -0.05 &&
-      getAngleDiff(targetLocs[2]) < 0.05 ) {
+    if (getAngleDiff(targetLocs[2]) > -0.025 &&
+      getAngleDiff(targetLocs[2]) < 0.025 ) {
+      right_direction = true;
+        ros::Duration(3).sleep();
+      }
+      if (right_direction) {
         vel.linear.x = 0.2;
         vel.angular.z = 0;
         return vel;
-    } else if (getAngleDiff(targetLocs[2]) > 0) {
-        vel.linear.x = 0;
-        vel.angular.z = 0.2;
-        return vel;
       } else {
-         vel.linear.x = 0;
-         vel.angular.z = - 0.2;
-         return vel;
+          vel.linear.x = 0;
+          vel.angular.z = 0.05;
+          return vel;
         }
   }
 
@@ -290,19 +301,19 @@ geometry_msgs::Twist waiterBot::move() {
    * Checks status for "heading to target location 4
    */
   if (status == "heading to target location 4") {
-    if (getAngleDiff(targetLocs[3]) > -0.05 &&
-      getAngleDiff(targetLocs[3]) < 0.05 ) {
+    if (getAngleDiff(targetLocs[3]) > -0.025 &&
+      getAngleDiff(targetLocs[3]) < 0.025 ) {
+        right_direction = true;
+        ros::Duration(3).sleep();
+      }
+      if (right_direction) {
         vel.linear.x = 0.2;
         vel.angular.z = 0;
         return vel;
-    } else if (getAngleDiff(targetLocs[3]) > 0) {
-        vel.linear.x = 0;
-        vel.angular.z = 0.2;
-        return vel;
       } else {
-         vel.linear.x = 0;
-         vel.angular.z = - 0.2;
-         return vel;
+          vel.linear.x = 0;
+          vel.angular.z = 0.05;
+          return vel;
         }
   }
 

@@ -53,7 +53,7 @@ class distSensor {
   //! checks for collision function
   /**
    * @brief This function checks for collision
-   * If the distReading is under 0.1 meters then it will mark
+   * If the distReading is under 0.75 meters then it will mark
    * that there is something in front of it
    * @param nothing
    * @return bool repesenting whether it senses a collision or not

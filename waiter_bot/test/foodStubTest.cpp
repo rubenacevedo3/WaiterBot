@@ -92,9 +92,8 @@ TEST(foodStubTest, pubFoodTest) {
    * Set robot location to location 3
    */
   nav_msgs::Odometry omsg;
-  omsg.pose.pose.position.x = 10;
-  omsg.pose.pose.position.y = 10;
-  omsg.pose.pose.orientation.z = 3.14/2;
+  omsg.pose.pose.position.x = 2;
+  omsg.pose.pose.position.y = 2;
   f.r.mm.setCurrentLocationCallBack(omsg);
   auto m = f.r.move();
   d = f.pubFood();
