@@ -72,7 +72,7 @@ void foodStub::addFood() {
  * @return nothing
  */
 void foodStub::removeFood() {
-  if (foodWeight - 0.2*9 < 0.5) {
+  if (foodWeight - 0.333*9 < 0.5) {
     foodWeight = 0;
     return;
   }
