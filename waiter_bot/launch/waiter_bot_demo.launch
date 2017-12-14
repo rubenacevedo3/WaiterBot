@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<launch>
+
+  <arg name="doRosbag" default= "false"/>
+
+  <include file="$(find turtlebot_gazebo)/launch/turtlebot_world.launch">
+	  <arg name="world_file" value="$(find WaiterBot)/waiter_bot/world/waiterBot_world.world"/>
+   </include>
+ 
+  <node pkg="waiter_bot" name="waiterBot_node" type="waiterBot_node" output = "screen"/>
+  <node pkg="waiter_bot" name="foodStub_node" type="foodStub_node" output = "screen"/>
+
+  <group if="$(arg doRosbag)">
+    <node pkg = "rosbag" name= "rosbag_record" type= "record"
+  		args = "-a -x /camera/(.*) -O turtleBotBagfile" output = "screen" 
+    />
+  </group>
+
+</launch>
