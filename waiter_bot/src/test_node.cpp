@@ -48,7 +48,7 @@ int main(int argc, char **argv) {
   ros::NodeHandle n;
   ros::Publisher scan_pub = n.advertise<sensor_msgs::LaserScan>("scan", 50);
   unsigned int num_readings = 100;
-  float v = 0.05; //  This should indicate that the robot is in collision
+  float v = 0.05;  // This should indicate that the robot is in collision
 
   /**
    * This is creating a nav_msgs::Odometry publisher
@@ -60,7 +60,7 @@ int main(int argc, char **argv) {
    */
   float x = 2;
   float y = 0;
-  
+
 
   ros::Rate r(1.0);
   int t = 0;

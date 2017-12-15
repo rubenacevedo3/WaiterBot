@@ -78,7 +78,6 @@ int main(int argc, char **argv) {
     ("/mobile_base/commands/velocity", 100);
 
   ros::Rate rate(5);
-  ros::Duration delay(10);
 
   while (ros::ok()) {
     auto vel_msg = r.move();

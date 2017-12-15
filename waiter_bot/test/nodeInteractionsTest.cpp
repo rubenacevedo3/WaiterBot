@@ -40,14 +40,12 @@ float w;
 bool forceB;
 
 void velCallBack(const geometry_msgs::Twist& vel) {
-  ROS_INFO ("Vel Message Received");
   x = vel.linear.x;
   t = vel.angular.z;
   velB = true;
 }
 
 void forceCallBack(const std_msgs::Float32& f_msg) {
-  ROS_INFO ("Force Message Received");
   w = f_msg.data;
   forceB = true;
 }
@@ -61,7 +59,8 @@ void forceCallBack(const std_msgs::Float32& f_msg) {
  */
 TEST(nodeInteractionsTest, waiterBot_nodeTest) {
   ros::NodeHandle n;
-  ros::Subscriber vel_sub = n.subscribe("/mobile_base/commands/velocity", 50, velCallBack);
+  ros::Subscriber vel_sub = n.subscribe("/mobile_base/commands/velocity",
+    50, velCallBack);
   ros::Duration(5).sleep();
   ros::spinOnce();
   EXPECT_FLOAT_EQ(0, x);
