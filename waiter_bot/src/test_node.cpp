@@ -29,27 +29,41 @@
  */
 
 #include <sensor_msgs/LaserScan.h>
-// #include <geometry_msgs/Twist.h>
-// #include <std_msgs/String.h>
+#include <nav_msgs/Odometry.h>
 #include <ros/ros.h>
 #include "distSensor.hpp"
 
 /**
 * @brief This node run is used for testing
 * The node publishes sensor_msgs::LaserScan data
+* This node also publishes nav_msgs::Odometry data
+* 
 */
 int main(int argc, char **argv) {
   /**
    * This is creating a sensor_msgs::LaserScan publisher
-   * to test the distSensor class
+   * to test the distSensor class and waiterBot_node
    */
   ros::init(argc, argv, "test_node");
   ros::NodeHandle n;
   ros::Publisher scan_pub = n.advertise<sensor_msgs::LaserScan>("scan", 50);
   unsigned int num_readings = 100;
+  float v = 0.05; //  This should indicate that the robot is in collision
+
+  /**
+   * This is creating a nav_msgs::Odometry publisher
+   * to test the waiterBot_node
+   */
+  ros::Publisher odo_pub = n.advertise<nav_msgs::Odometry>("/odom", 50);
+  /**
+   * This sets the robot location to target location 2;
+   */
+  float x = 2;
+  float y = 0;
+  
+
   ros::Rate r(1.0);
   int t = 0;
-  float v = 0.05;
   while (t < 5) {
     // generate some fake data for our laser scan
     sensor_msgs::LaserScan scan;
@@ -62,6 +76,14 @@ int main(int argc, char **argv) {
     }
     scan_pub.publish(scan);
     ROS_INFO("Publishing Scan Data");
+
+    nav_msgs::Odometry odo_msg;
+    odo_msg.pose.pose.position.x = x;
+    odo_msg.pose.pose.position.y = y;
+
+    odo_pub.publish(odo_msg);
+    ROS_INFO("Publishing Odom Data");
+
     r.sleep();
     t++;
   }

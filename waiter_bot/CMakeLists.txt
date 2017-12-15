@@ -234,6 +234,7 @@ if(CATKIN_ENABLE_TESTING)
   test/distSensorTest.cpp
   test/motionModuleTest.cpp
   test/waiterBotTest.cpp
+  test/nodeInteractionsTest.cpp
   src/foodStub.cpp
   src/forceSensor.cpp
   src/position.cpp

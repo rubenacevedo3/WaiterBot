@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
 <launch>
   <node pkg="waiter_bot" name="test_node" type="test_node" output = "screen"/>
-  <test pkg="waiter_bot" test-name="mainTest" type="mainTest" />
+  <node pkg="waiter_bot" name="waiterBot_node" type="waiterBot_node" output = "screen"/>
+  <node pkg="waiter_bot" name="foodStub_node" type="foodStub_node" output = "screen"/>
+  <test pkg="waiter_bot" test-name="mainTest" type="mainTest"/>
 </launch>
