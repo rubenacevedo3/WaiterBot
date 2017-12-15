@@ -177,7 +177,8 @@ geometry_msgs::Twist waiterBot::move() {
   ROS_DEBUG("getWeight: %f", fs.getWeight());
   if (fs.getWeight() == 0) {
     status = "heading to target location 1";
-    ROS_INFO("GO pick up food!!!!!");
+    right_direction = false;
+    ROS_INFO("GO pick up food!");
   }
 
   ros::Duration delay(10);
