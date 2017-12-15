@@ -231,6 +231,37 @@ $ lcov --list coverage.info
 ```
 
 
+## Steps to Generate Doxygen Documentation
+
+First install doxygen.
+
+```
+sudo apt install doxygen
+```
+
+To generate Doxygen Documentation in HTML and LaTEX, follow the next steps:
+
+```
+cd <path to repository>
+mkdir <folder name>
+cd <folder name>
+doxygen -g <doxygen file name>
+```
+Inside the doxygen file change the following:
+
+```
+PROJECT_NAME = 'your project name'
+INPUT = ../app ../include ../test
+```
+Run and generate the documents by running the next command:
+
+```
+doxygen <doxygen file name>
+```
+
+To view the documents go to the directory that you ran doxygen and open the directory called html. Then click on the file index.html to open it using you favorite browser.
+
+
 ## Steps to Run cpplint 
 
 Use cpplint to identify potential source code issues that are in conflict with the Google C++ style guide. 
