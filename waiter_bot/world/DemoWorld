@@ -182,10 +182,10 @@
       <pose frame=''>0.121465 -0.6996 0 0 -0 0</pose>
     </model>
     <state world_name='default'>
-      <sim_time>80 37000000</sim_time>
-      <real_time>82 3944898</real_time>
-      <wall_time>1513287678 392853741</wall_time>
-      <iterations>80037</iterations>
+      <sim_time>164 910000000</sim_time>
+      <real_time>86 863920389</real_time>
+      <wall_time>1513358881 605535669</wall_time>
+      <iterations>84873</iterations>
       <model name='ground_plane'>
         <pose frame=''>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
@@ -197,13 +197,13 @@
         </link>
       </model>
       <model name='person_block'>
-        <pose frame=''>0.121463 -0.6996 0.500001 -2e-06 1e-06 0.000504</pose>
+        <pose frame=''>-1 -1 0.500001 -2e-06 -1e-06 -0.000472</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose frame=''>0.121463 -0.6996 0.500001 -2e-06 1e-06 0.000504</pose>
+          <pose frame=''>-1 -1 0.500001 -2e-06 -1e-06 -0.000472</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>-1.54796 -4.90912 3.90355 0.147518 0.725939 2.9104</acceleration>
-          <wrench>-0.126005 -0.399606 0.317752 0 -0 0</wrench>
+          <acceleration>1.54963 -4.91368 3.91649 0.156521 -0.729468 -2.91094</acceleration>
+          <wrench>0.126141 -0.399978 0.318805 0 -0 0</wrench>
         </link>
       </model>
       <light name='sun'>
