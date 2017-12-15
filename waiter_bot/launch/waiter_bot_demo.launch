@@ -5,7 +5,7 @@
 
 
   <include file="$(find turtlebot_gazebo)/launch/turtlebot_world.launch">
-	  <arg name="world_file" value="$(find WaiterBot)/waiter_bot/world/DemoWorld1.world"/>
+	  <arg name="world_file" value="$(find waiter_bot)/world/DemoWorld1.world"/>
    </include>
  
   <node pkg="waiter_bot" name="waiterBot_node" type="waiterBot_node" output = "screen"/>
