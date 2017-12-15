@@ -1,0 +1,5 @@
+<map id="waiterBot" name="waiterBot">
+<area shape="rect" id="node2" href="$classdistSensor.html" title="A distance sensor Class. " alt="" coords="5,5,89,32"/>
+<area shape="rect" id="node3" href="$classforceSensor.html" title="A force sensor Class. " alt="" coords="113,5,205,32"/>
+<area shape="rect" id="node4" href="$classmotionModule.html" title="A motion module Class. " alt="" coords="229,5,332,32"/>
+</map>

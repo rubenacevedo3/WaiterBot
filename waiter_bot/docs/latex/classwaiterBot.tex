@@ -1,0 +1,244 @@
+\hypertarget{classwaiterBot}{}\section{waiter\+Bot Class Reference}
+\label{classwaiterBot}\index{waiter\+Bot@{waiter\+Bot}}
+
+
+A \hyperlink{classwaiterBot}{waiter\+Bot} Class.  
+
+
+
+
+{\ttfamily \#include $<$waiter\+Bot.\+hpp$>$}
+
+
+
+Collaboration diagram for waiter\+Bot\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=325pt]{classwaiterBot__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classwaiterBot_a9b3a45ca6b7700aa82ae8496aa85f2b3}{waiter\+Bot} ()
+\begin{DoxyCompactList}\small\item\em Public Methods and Attributes. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{classwaiterBot_a877f608ceff919a2c18082de76bb39f7}{get\+Status} ()
+\begin{DoxyCompactList}\small\item\em return the robot\textquotesingle{}s status function \end{DoxyCompactList}\item 
+std\+::vector$<$ \hyperlink{classposition}{position} $>$ \hyperlink{classwaiterBot_a9ee50a152a69fcf37133892d149ec352}{get\+Target\+Locs} ()
+\begin{DoxyCompactList}\small\item\em gets the robot\textquotesingle{}s target locations \end{DoxyCompactList}\item 
+bool \hyperlink{classwaiterBot_a20494335cbe4d278c04c7e7d0440b037}{did\+Stop} ()
+\begin{DoxyCompactList}\small\item\em sees if the robot stopped function \end{DoxyCompactList}\item 
+float \hyperlink{classwaiterBot_a7269cbb34bbca97f1002206079fdbfe1}{get\+Angle\+Diff} (\hyperlink{classposition}{position} tl)
+\begin{DoxyCompactList}\small\item\em get the angle difference function \end{DoxyCompactList}\item 
+geometry\+\_\+msgs\+::\+Twist \hyperlink{classwaiterBot_a1c6e589b55155bae665dde42d664a292}{move} ()
+\begin{DoxyCompactList}\small\item\em sees if the robot stopped function \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classdistSensor}{dist\+Sensor} \hyperlink{classwaiterBot_a54139b99410779ba1a3af03d45dd3dec}{ds}
+\begin{DoxyCompactList}\small\item\em the \hyperlink{classwaiterBot}{waiter\+Bot}\textquotesingle{}s distance Sensor \end{DoxyCompactList}\item 
+\hyperlink{classmotionModule}{motion\+Module} \hyperlink{classwaiterBot_aa477504a694726fc90b8e6fa4bcc9998}{mm}
+\begin{DoxyCompactList}\small\item\em the \hyperlink{classwaiterBot}{waiter\+Bot}\textquotesingle{}s motion module \end{DoxyCompactList}\item 
+\hyperlink{classforceSensor}{force\+Sensor} \hyperlink{classwaiterBot_a359f1ca46275a20771b0f922268fb72e}{fs}
+\begin{DoxyCompactList}\small\item\em the \hyperlink{classwaiterBot}{waiter\+Bot}\textquotesingle{}s force sensor \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A \hyperlink{classwaiterBot}{waiter\+Bot} Class. 
+
+M\+IT License
+
+Copyright 2017 Ruben Acevedo
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \char`\"{}\+Software\char`\"{}), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions\+:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. T\+HE S\+O\+F\+T\+W\+A\+RE IS P\+R\+O\+V\+I\+D\+ED \char`\"{}\+A\+S I\+S\char`\"{}, W\+I\+T\+H\+O\+UT W\+A\+R\+R\+A\+N\+TY OF A\+NY K\+I\+ND, E\+X\+P\+R\+E\+SS OR I\+M\+P\+L\+I\+ED, I\+N\+C\+L\+U\+D\+I\+NG B\+UT N\+OT L\+I\+M\+I\+T\+ED TO T\+HE W\+A\+R\+R\+A\+N\+T\+I\+ES OF M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+TY, F\+I\+T\+N\+E\+SS F\+OR A P\+A\+R\+T\+I\+C\+U\+L\+AR P\+U\+R\+P\+O\+SE A\+ND N\+O\+N\+I\+N\+F\+R\+I\+N\+G\+E\+M\+E\+NT. IN NO E\+V\+E\+NT S\+H\+A\+LL T\+HE A\+U\+T\+H\+O\+RS OR C\+O\+P\+Y\+R\+I\+G\+HT H\+O\+L\+D\+E\+RS BE L\+I\+A\+B\+LE F\+OR A\+NY C\+L\+A\+IM, D\+A\+M\+A\+G\+ES OR O\+T\+H\+ER L\+I\+A\+B\+I\+L\+I\+TY, W\+H\+E\+T\+H\+ER IN AN A\+C\+T\+I\+ON OF C\+O\+N\+T\+R\+A\+CT, T\+O\+RT OR O\+T\+H\+E\+R\+W\+I\+SE, A\+R\+I\+S\+I\+NG F\+R\+OM, O\+UT OF OR IN C\+O\+N\+N\+E\+C\+T\+I\+ON W\+I\+TH T\+HE S\+O\+F\+T\+W\+A\+RE OR T\+HE U\+SE OR O\+T\+H\+ER D\+E\+A\+L\+I\+N\+GS IN T\+HE S\+O\+F\+T\+W\+A\+RE. © 2017 Git\+Hub, Inc. This class is the complete robot 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{waiter\+Bot@{waiter\+Bot}!waiter\+Bot@{waiter\+Bot}}
+\index{waiter\+Bot@{waiter\+Bot}!waiter\+Bot@{waiter\+Bot}}
+\subsubsection[{\texorpdfstring{waiter\+Bot()}{waiterBot()}}]{\setlength{\rightskip}{0pt plus 5cm}waiter\+Bot\+::waiter\+Bot (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classwaiterBot_a9b3a45ca6b7700aa82ae8496aa85f2b3}{}\label{classwaiterBot_a9b3a45ca6b7700aa82ae8496aa85f2b3}
+
+
+Public Methods and Attributes. 
+
+Class Constructor.
+
+Class Constructor This code constructs the class. It sets the target locations to be (0,0) (2,0) (2,2) (2,0) It sets the status to \char`\"{}in target location 1\char`\"{} Sets the stopB to false; Sets the right\+\_\+direction to false; 
+\begin{DoxyParams}{Parameters}
+{\em nothing} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing
+\end{DoxyReturn}
+M\+IT License
+
+Copyright 2017 Ruben Acevedo
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \char`\"{}\+Software\char`\"{}), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions\+:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. T\+HE S\+O\+F\+T\+W\+A\+RE IS P\+R\+O\+V\+I\+D\+ED \char`\"{}\+A\+S I\+S\char`\"{}, W\+I\+T\+H\+O\+UT W\+A\+R\+R\+A\+N\+TY OF A\+NY K\+I\+ND, E\+X\+P\+R\+E\+SS OR I\+M\+P\+L\+I\+ED, I\+N\+C\+L\+U\+D\+I\+NG B\+UT N\+OT L\+I\+M\+I\+T\+ED TO T\+HE W\+A\+R\+R\+A\+N\+T\+I\+ES OF M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+TY, F\+I\+T\+N\+E\+SS F\+OR A P\+A\+R\+T\+I\+C\+U\+L\+AR P\+U\+R\+P\+O\+SE A\+ND N\+O\+N\+I\+N\+F\+R\+I\+N\+G\+E\+M\+E\+NT. IN NO E\+V\+E\+NT S\+H\+A\+LL T\+HE A\+U\+T\+H\+O\+RS OR C\+O\+P\+Y\+R\+I\+G\+HT H\+O\+L\+D\+E\+RS BE L\+I\+A\+B\+LE F\+OR A\+NY C\+L\+A\+IM, D\+A\+M\+A\+G\+ES OR O\+T\+H\+ER L\+I\+A\+B\+I\+L\+I\+TY, W\+H\+E\+T\+H\+ER IN AN A\+C\+T\+I\+ON OF C\+O\+N\+T\+R\+A\+CT, T\+O\+RT OR O\+T\+H\+E\+R\+W\+I\+SE, A\+R\+I\+S\+I\+NG F\+R\+OM, O\+UT OF OR IN C\+O\+N\+N\+E\+C\+T\+I\+ON W\+I\+TH T\+HE S\+O\+F\+T\+W\+A\+RE OR T\+HE U\+SE OR O\+T\+H\+ER D\+E\+A\+L\+I\+N\+GS IN T\+HE S\+O\+F\+T\+W\+A\+RE. © 2017 Git\+Hub, Inc. This code constructs the class. It sets the target locations to be (0,0) (2,0) (2,2) (2,0) It sets the status to \char`\"{}in target location 1\char`\"{} Sets the stopB to false; Sets the right\+\_\+direction to false; 
+\begin{DoxyParams}{Parameters}
+{\em nothing} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+
+
+\subsection{Member Function Documentation}
+\index{waiter\+Bot@{waiter\+Bot}!did\+Stop@{did\+Stop}}
+\index{did\+Stop@{did\+Stop}!waiter\+Bot@{waiter\+Bot}}
+\subsubsection[{\texorpdfstring{did\+Stop()}{didStop()}}]{\setlength{\rightskip}{0pt plus 5cm}bool waiter\+Bot\+::did\+Stop (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classwaiterBot_a20494335cbe4d278c04c7e7d0440b037}{}\label{classwaiterBot_a20494335cbe4d278c04c7e7d0440b037}
+
+
+sees if the robot stopped function 
+
+This function to see whether the robot stopped or not 
+\begin{DoxyParams}{Parameters}
+{\em nothing} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a bool repersenting whether or not the robot stopped 
+\end{DoxyReturn}
+\index{waiter\+Bot@{waiter\+Bot}!get\+Angle\+Diff@{get\+Angle\+Diff}}
+\index{get\+Angle\+Diff@{get\+Angle\+Diff}!waiter\+Bot@{waiter\+Bot}}
+\subsubsection[{\texorpdfstring{get\+Angle\+Diff(position tl)}{getAngleDiff(position tl)}}]{\setlength{\rightskip}{0pt plus 5cm}float waiter\+Bot\+::get\+Angle\+Diff (
+\begin{DoxyParamCaption}
+\item[{{\bf position}}]{tl}
+\end{DoxyParamCaption}
+)}\hypertarget{classwaiterBot_a7269cbb34bbca97f1002206079fdbfe1}{}\label{classwaiterBot_a7269cbb34bbca97f1002206079fdbfe1}
+
+
+get the angle difference function 
+
+This function gets the angle differnce between heading and direction. It find the angle heading that the robot should be in to reach its location It then calulates and returns the difference between what the robots heading is and what it should be 
+\begin{DoxyParams}{Parameters}
+{\em a} & position repersenting a target location \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a float repersenting the angle difference in radians 
+\end{DoxyReturn}
+Find what the heading should be
+
+find the angle difference\index{waiter\+Bot@{waiter\+Bot}!get\+Status@{get\+Status}}
+\index{get\+Status@{get\+Status}!waiter\+Bot@{waiter\+Bot}}
+\subsubsection[{\texorpdfstring{get\+Status()}{getStatus()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string waiter\+Bot\+::get\+Status (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classwaiterBot_a877f608ceff919a2c18082de76bb39f7}{}\label{classwaiterBot_a877f608ceff919a2c18082de76bb39f7}
+
+
+return the robot\textquotesingle{}s status function 
+
+This function returns the robot\textquotesingle{}s status function 
+\begin{DoxyParams}{Parameters}
+{\em nothing} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a string representing the robot\textquotesingle{}s status 
+\end{DoxyReturn}
+\index{waiter\+Bot@{waiter\+Bot}!get\+Target\+Locs@{get\+Target\+Locs}}
+\index{get\+Target\+Locs@{get\+Target\+Locs}!waiter\+Bot@{waiter\+Bot}}
+\subsubsection[{\texorpdfstring{get\+Target\+Locs()}{getTargetLocs()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$ {\bf position} $>$ waiter\+Bot\+::get\+Target\+Locs (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classwaiterBot_a9ee50a152a69fcf37133892d149ec352}{}\label{classwaiterBot_a9ee50a152a69fcf37133892d149ec352}
+
+
+gets the robot\textquotesingle{}s target locations 
+
+This function returns the robots target locations 
+\begin{DoxyParams}{Parameters}
+{\em nothing} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a position vector list of all the target locations 
+\end{DoxyReturn}
+\index{waiter\+Bot@{waiter\+Bot}!move@{move}}
+\index{move@{move}!waiter\+Bot@{waiter\+Bot}}
+\subsubsection[{\texorpdfstring{move()}{move()}}]{\setlength{\rightskip}{0pt plus 5cm}geometry\+\_\+msgs\+::\+Twist waiter\+Bot\+::move (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classwaiterBot_a1c6e589b55155bae665dde42d664a292}{}\label{classwaiterBot_a1c6e589b55155bae665dde42d664a292}
+
+
+sees if the robot stopped function 
+
+This function moves the robot It checks its current location It checks/sets where it needs to go It checks if it has food It checks it there is an obstical It checks to see if their is an obstical in the way It sets the velocity command 
+\begin{DoxyParams}{Parameters}
+{\em nothing} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a geometry\+\_\+msgs\+::\+Twist message repersenting velocity commands 
+\end{DoxyReturn}
+Check to see if the robot is in collision
+
+Check to see if the robot has food
+
+Check to see if the robot is in location 1
+
+Check to see if the robot is in location 2
+
+Check to see if the robot is in location 3
+
+Check to see if the robot is in location 4
+
+Checks status for "heading to target location 1
+
+Checks status for "heading to target location 2
+
+Checks status for "heading to target location 3
+
+Checks status for "heading to target location 4
+
+if status is incorrect or in a region robot does nothing
+
+\subsection{Member Data Documentation}
+\index{waiter\+Bot@{waiter\+Bot}!ds@{ds}}
+\index{ds@{ds}!waiter\+Bot@{waiter\+Bot}}
+\subsubsection[{\texorpdfstring{ds}{ds}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf dist\+Sensor} waiter\+Bot\+::ds}\hypertarget{classwaiterBot_a54139b99410779ba1a3af03d45dd3dec}{}\label{classwaiterBot_a54139b99410779ba1a3af03d45dd3dec}
+
+
+the \hyperlink{classwaiterBot}{waiter\+Bot}\textquotesingle{}s distance Sensor 
+
+this \hyperlink{classdistSensor}{dist\+Sensor} repersents the robot\textquotesingle{}s distance sensor \index{waiter\+Bot@{waiter\+Bot}!fs@{fs}}
+\index{fs@{fs}!waiter\+Bot@{waiter\+Bot}}
+\subsubsection[{\texorpdfstring{fs}{fs}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf force\+Sensor} waiter\+Bot\+::fs}\hypertarget{classwaiterBot_a359f1ca46275a20771b0f922268fb72e}{}\label{classwaiterBot_a359f1ca46275a20771b0f922268fb72e}
+
+
+the \hyperlink{classwaiterBot}{waiter\+Bot}\textquotesingle{}s force sensor 
+
+this \hyperlink{classforceSensor}{force\+Sensor} repersents the robot\textquotesingle{}s force sensor \index{waiter\+Bot@{waiter\+Bot}!mm@{mm}}
+\index{mm@{mm}!waiter\+Bot@{waiter\+Bot}}
+\subsubsection[{\texorpdfstring{mm}{mm}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf motion\+Module} waiter\+Bot\+::mm}\hypertarget{classwaiterBot_aa477504a694726fc90b8e6fa4bcc9998}{}\label{classwaiterBot_aa477504a694726fc90b8e6fa4bcc9998}
+
+
+the \hyperlink{classwaiterBot}{waiter\+Bot}\textquotesingle{}s motion module 
+
+this \hyperlink{classmotionModule}{motion\+Module} repersents the robot\textquotesingle{}s motion module 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/viki/catkin\+\_\+ws/src/\+Waiter\+Bot/waiter\+\_\+bot/include/\hyperlink{waiterBot_8hpp}{waiter\+Bot.\+hpp}\item 
+/home/viki/catkin\+\_\+ws/src/\+Waiter\+Bot/waiter\+\_\+bot/src/\hyperlink{waiterBot_8cpp}{waiter\+Bot.\+cpp}\end{DoxyCompactItemize}

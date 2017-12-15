@@ -1,0 +1,100 @@
+\hypertarget{nodeInteractionsTest_8cpp}{}\section{/home/viki/catkin\+\_\+ws/src/\+Waiter\+Bot/waiter\+\_\+bot/test/node\+Interactions\+Test.cpp File Reference}
+\label{nodeInteractionsTest_8cpp}\index{/home/viki/catkin\+\_\+ws/src/\+Waiter\+Bot/waiter\+\_\+bot/test/node\+Interactions\+Test.\+cpp@{/home/viki/catkin\+\_\+ws/src/\+Waiter\+Bot/waiter\+\_\+bot/test/node\+Interactions\+Test.\+cpp}}
+
+
+This is the \char`\"{}.\+cpp\char`\"{} file for testing the node interations.  
+
+
+{\ttfamily \#include $<$gtest/gtest.\+h$>$}\\*
+{\ttfamily \#include $<$geometry\+\_\+msgs/\+Twist.\+h$>$}\\*
+{\ttfamily \#include $<$std\+\_\+msgs/\+Float32.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}ros/ros.\+h\char`\"{}}\\*
+Include dependency graph for node\+Interactions\+Test.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{nodeInteractionsTest_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries vel\+Call\+Back} (const geometry\+\_\+msgs\+::\+Twist \&vel)\hypertarget{nodeInteractionsTest_8cpp_af9a1162f222b8b602ddc21b31aef0cb9}{}\label{nodeInteractionsTest_8cpp_af9a1162f222b8b602ddc21b31aef0cb9}
+
+\item 
+void {\bfseries force\+Call\+Back} (const std\+\_\+msgs\+::\+Float32 \&f\+\_\+msg)\hypertarget{nodeInteractionsTest_8cpp_a92094d561888a0a18f78a63b4ea3248f}{}\label{nodeInteractionsTest_8cpp_a92094d561888a0a18f78a63b4ea3248f}
+
+\item 
+\hyperlink{nodeInteractionsTest_8cpp_a871117ce018faf9047061b943d7fed57}{T\+E\+ST} (node\+Interactions\+Test, waiter\+Bot\+\_\+node\+Test)
+\begin{DoxyCompactList}\small\item\em test the waiter\+Bot\+\_\+node \end{DoxyCompactList}\item 
+\hyperlink{nodeInteractionsTest_8cpp_a50ef1f939ceba54b3ae4e0c8f4f2696a}{T\+E\+ST} (node\+Interactions\+Test, food\+Stub\+\_\+node\+Test)
+\begin{DoxyCompactList}\small\item\em test the food\+Stub\+\_\+node \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+float \hyperlink{nodeInteractionsTest_8cpp_ad0da36b2558901e21e7a30f6c227a45e}{x}
+\item 
+float {\bfseries t}\hypertarget{nodeInteractionsTest_8cpp_afea36502e9d227ff62c5fb2719a246f2}{}\label{nodeInteractionsTest_8cpp_afea36502e9d227ff62c5fb2719a246f2}
+
+\item 
+bool {\bfseries velB}\hypertarget{nodeInteractionsTest_8cpp_a92c36b07bc31e8b04d8670c9a389d04f}{}\label{nodeInteractionsTest_8cpp_a92c36b07bc31e8b04d8670c9a389d04f}
+
+\item 
+float {\bfseries w}\hypertarget{nodeInteractionsTest_8cpp_a56eca241e2896b9f57a79589e76fd24b}{}\label{nodeInteractionsTest_8cpp_a56eca241e2896b9f57a79589e76fd24b}
+
+\item 
+bool {\bfseries forceB}\hypertarget{nodeInteractionsTest_8cpp_a06b51cfbf437b516a1289dab2b0eade3}{}\label{nodeInteractionsTest_8cpp_a06b51cfbf437b516a1289dab2b0eade3}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is the \char`\"{}.\+cpp\char`\"{} file for testing the node interations. 
+
+\begin{DoxyAuthor}{Author}
+Ruben Acevedo
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+\mbox{[}2017\mbox{]} Ruben Acevedo 
+\end{DoxyCopyright}
+
+
+\subsection{Function Documentation}
+\index{node\+Interactions\+Test.\+cpp@{node\+Interactions\+Test.\+cpp}!T\+E\+ST@{T\+E\+ST}}
+\index{T\+E\+ST@{T\+E\+ST}!node\+Interactions\+Test.\+cpp@{node\+Interactions\+Test.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T(node\+Interactions\+Test, waiter\+Bot\+\_\+node\+Test)}{TEST(nodeInteractionsTest, waiterBot_nodeTest)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+ST (
+\begin{DoxyParamCaption}
+\item[{node\+Interactions\+Test}]{, }
+\item[{waiter\+Bot\+\_\+node\+Test}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{nodeInteractionsTest_8cpp_a871117ce018faf9047061b943d7fed57}{}\label{nodeInteractionsTest_8cpp_a871117ce018faf9047061b943d7fed57}
+
+
+test the waiter\+Bot\+\_\+node 
+
+This tests the waiter\+Bot\+\_\+node Given that the \hyperlink{classdistSensor}{dist\+Sensor} should be recieving a collision statement. The \hyperlink{classwaiterBot}{waiter\+Bot} should be publishing linear.\+x = angular.\+z = 0 \index{node\+Interactions\+Test.\+cpp@{node\+Interactions\+Test.\+cpp}!T\+E\+ST@{T\+E\+ST}}
+\index{T\+E\+ST@{T\+E\+ST}!node\+Interactions\+Test.\+cpp@{node\+Interactions\+Test.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T(node\+Interactions\+Test, food\+Stub\+\_\+node\+Test)}{TEST(nodeInteractionsTest, foodStub_nodeTest)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+ST (
+\begin{DoxyParamCaption}
+\item[{node\+Interactions\+Test}]{, }
+\item[{food\+Stub\+\_\+node\+Test}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{nodeInteractionsTest_8cpp_a50ef1f939ceba54b3ae4e0c8f4f2696a}{}\label{nodeInteractionsTest_8cpp_a50ef1f939ceba54b3ae4e0c8f4f2696a}
+
+
+test the food\+Stub\+\_\+node 
+
+This tests the food\+Stub\+\_\+node Given that the robot should be at location (0,2) the food stub should be publishing data = 6.\+033 
+
+\subsection{Variable Documentation}
+\index{node\+Interactions\+Test.\+cpp@{node\+Interactions\+Test.\+cpp}!x@{x}}
+\index{x@{x}!node\+Interactions\+Test.\+cpp@{node\+Interactions\+Test.\+cpp}}
+\subsubsection[{\texorpdfstring{x}{x}}]{\setlength{\rightskip}{0pt plus 5cm}float x}\hypertarget{nodeInteractionsTest_8cpp_ad0da36b2558901e21e7a30f6c227a45e}{}\label{nodeInteractionsTest_8cpp_ad0da36b2558901e21e7a30f6c227a45e}
+M\+IT License
+
+Copyright 2017 Ruben Acevedo
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \char`\"{}\+Software\char`\"{}), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions\+:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. T\+HE S\+O\+F\+T\+W\+A\+RE IS P\+R\+O\+V\+I\+D\+ED \char`\"{}\+A\+S I\+S\char`\"{}, W\+I\+T\+H\+O\+UT W\+A\+R\+R\+A\+N\+TY OF A\+NY K\+I\+ND, E\+X\+P\+R\+E\+SS OR I\+M\+P\+L\+I\+ED, I\+N\+C\+L\+U\+D\+I\+NG B\+UT N\+OT L\+I\+M\+I\+T\+ED TO T\+HE W\+A\+R\+R\+A\+N\+T\+I\+ES OF M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+TY, F\+I\+T\+N\+E\+SS F\+OR A P\+A\+R\+T\+I\+C\+U\+L\+AR P\+U\+R\+P\+O\+SE A\+ND N\+O\+N\+I\+N\+F\+R\+I\+N\+G\+E\+M\+E\+NT. IN NO E\+V\+E\+NT S\+H\+A\+LL T\+HE A\+U\+T\+H\+O\+RS OR C\+O\+P\+Y\+R\+I\+G\+HT H\+O\+L\+D\+E\+RS BE L\+I\+A\+B\+LE F\+OR A\+NY C\+L\+A\+IM, D\+A\+M\+A\+G\+ES OR O\+T\+H\+ER L\+I\+A\+B\+I\+L\+I\+TY, W\+H\+E\+T\+H\+ER IN AN A\+C\+T\+I\+ON OF C\+O\+N\+T\+R\+A\+CT, T\+O\+RT OR O\+T\+H\+E\+R\+W\+I\+SE, A\+R\+I\+S\+I\+NG F\+R\+OM, O\+UT OF OR IN C\+O\+N\+N\+E\+C\+T\+I\+ON W\+I\+TH T\+HE S\+O\+F\+T\+W\+A\+RE OR T\+HE U\+SE OR O\+T\+H\+ER D\+E\+A\+L\+I\+N\+GS IN T\+HE S\+O\+F\+T\+W\+A\+RE. © 2017 Git\+Hub, Inc. 
