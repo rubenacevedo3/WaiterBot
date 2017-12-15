@@ -88,11 +88,9 @@ Messages:
 * geometry_msgs::Twist publishing to the topic "/mobile_base/commands/velocity"
 * nav_msgs::Odometry subscribing to the topic "/odom"
 
-Services:
-(none)
+Services: (none)
 
-Actions:
-* (none)
+Actions: (none)
 
 
 ## ROS Nodes
@@ -119,7 +117,7 @@ test_node:
 ## Future Works
 
 * Impliment a PID controller or use a Navigation Stack
-* Create more test to get 100% code coverage
+* Create more tests to get 100% code coverage
 * Create moving obsticals in Gazebo
 
 
