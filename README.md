@@ -131,8 +131,31 @@ $ roscore
 ```
 $ cd ~/catkin_ws
 $ source ./devel/setup.bash
-$ roslaunch WaiterBot waiterBotDemo.launch
+$ roslaunch waiter_bot waiter_bot_demo.launch
 # press ctrl+C to stop
+```
+## Steps for recording bag files with the launch file
+
+(In terminal 2)
+```
+$ cd ~/catkin_ws
+$ source ./devel/setup.bash
+$ roslaunch waiter_bot waiter_bot_demo.launch  doRosbag:=true
+# press ctrl+C to stop recording 
+```
+## Steps for inspecting the bag file
+
+(In terminal 2)
+```
+$ cd ~/.ros
+$ rosbag info waiterBotBagFile.bag
+```
+
+## Steps for playing back the bag file
+(In terminal 2)
+```
+$ cd ~/.ros
+$ rosbag play waiterBotBagFile.bag
 ```
 
 ## Steps to Run Tests
@@ -140,7 +163,7 @@ $ roslaunch WaiterBot waiterBotDemo.launch
 ```
 $ cd ~/catkin_ws
 $ source ./devel/setup.bash
-$ rostest beginner_tutorials talkerTest.launch
+$ rostest waiter_bot mainTest.launch
 ```
 
 ## Steps to Run cpplint 
