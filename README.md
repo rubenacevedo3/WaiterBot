@@ -63,7 +63,8 @@ The reason for why the target locations are about 2 meters apart is due to the f
 In the future this code should implement a PID controller in order to insure that the robot reach its target locations every time and at any distance away.  This was the original plan but due to time constraints it had to be pushed back to future works. 
 
 Another issue is that the block representing a person does not load up in the Gazebo Simulator. When the world is open locally the block is there but when the launch file opens the same world file through the launch file the block is missing. This could be due to the fact that the Gazebo on my Virtual Machine is slow to upload worlds. In the future this issue would be thoroughly investigated. 
-   
+
+Finally the last issue is that when the robot returns to location 1 after completing a full loop, it does not seem to be able to go to location 2 again. The robot stops turning towards location 2 and just heads straight. This was not always the case. Before the robot was able to go to location 2 again after it completed one loop. There must be some logic error in the code that I could not fix in time.
 
 ## Demo Default Values
 
@@ -119,6 +120,7 @@ test_node:
 * Impliment a PID controller or use a Navigation Stack
 * Create more tests to get 100% code coverage
 * Create moving obsticals in Gazebo
+* Fix bugs
 
 
 ## Steps to Build Demo
